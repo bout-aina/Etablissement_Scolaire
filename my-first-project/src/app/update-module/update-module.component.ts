@@ -33,10 +33,10 @@ export class UpdateModuleComponent implements OnInit {
   ngOnInit(): void {
     this.moduleId = this.route.snapshot.params['id'];
     this.newModuleFormGroup=this.fb.group({
-      nom : this.fb.control("{{this.module.nom}}"),
-      coeff : this.fb.control("{{this.module.coeff}}"),
-      taux_horraire : this.fb.control("{{this.module.taux_horraire}}"),
-      nomProf : this.fb.control("{{this.module.nomProf}}"),
+      nom : this.fb.control("{{this.module.nom}}",[Validators.minLength(3),Validators.required]),
+      coeff : this.fb.control("{{this.module.coeff}}",[Validators.min(1),Validators.max(10),Validators.required]),
+      taux_horraire : this.fb.control("{{this.module.taux_horraire}}",[Validators.min(1),Validators.max(50),Validators.required]),
+      nomProf : this.fb.control("{{this.module.nomProf}}",[Validators.required]),
 
 
     });

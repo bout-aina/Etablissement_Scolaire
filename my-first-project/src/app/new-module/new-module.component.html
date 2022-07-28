@@ -98,36 +98,36 @@
     <div class="form-group row">
       <label class="col-form-label col-4">Nom_Module</label>
       <div class="col-8">
-        <input type="text" class="form-control" formControlName="nom" >
+        <input type="text" class="form-control" formControlName="nom" placeholder="Saisir un nom de 3 ou plus caractères" >
         <span class="text-danger"
               *ngIf="newModuleFormGroup.controls['nom'].touched
                 && newModuleFormGroup.controls['nom'].errors
                 && newModuleFormGroup.controls['nom'].errors!['required']">
-            Name is Required
+            Saisir un nom de 3 ou plus caractères
           </span>
       </div>
     </div>
     <div class="form-group row">
       <label class="col-form-label col-4">Coefficient</label>
       <div class="col-8">
-        <input type="text" class="form-control" formControlName="coeff" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >
+        <input type="number" class="form-control" formControlName="coeff"  placeholder="Saisir un numero entre 1 et 10" >
         <span class="text-danger"
               *ngIf="newModuleFormGroup.controls['coeff'].touched
                 && newModuleFormGroup.controls['coeff'].errors
                 && newModuleFormGroup.controls['coeff'].errors!['required']">
-            Coeff is Required
+           Saisir un numero entre 1 et 10
           </span>
       </div>
     </div>
     <div class="form-group row">
       <label class="col-form-label col-4">Taux_horraire</label>
       <div class="col-8">
-        <input type="text" class="form-control"  formControlName="taux_horraire" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+        <input type="number" class="form-control"  formControlName="taux_horraire" placeholder="Saisir un numero entre 1 et 50" >
         <span class="text-danger"
               *ngIf="newModuleFormGroup.controls['taux_horraire'].touched
                 && newModuleFormGroup.controls['taux_horraire'].errors
                 && newModuleFormGroup.controls['taux_horraire'].errors!['required']">
-            taux horraire is Required
+           Saisir un numero entre 1 et 50
           </span>
       </div>
     </div>

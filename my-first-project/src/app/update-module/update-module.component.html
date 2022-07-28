@@ -98,44 +98,44 @@
     <div class="form-group row">
       <label class="col-form-label col-4">Nom_Module</label>
       <div class="col-8">
-        <input type="text" class="form-control" formControlName="nom"  [(ngModel)]="module.nom"  required>
+        <input type="text" class="form-control" formControlName="nom"  [(ngModel)]="module.nom"  placeholder="Saisir un nom de 3 ou plus caractères">
         <span class="text-danger"
               *ngIf="newModuleFormGroup.controls['nom'].touched
                 && newModuleFormGroup.controls['nom'].errors
                 && newModuleFormGroup.controls['nom'].errors!['required']">
-            Name is Required
+                       Saisir un nom de 3 ou plus caractères
           </span>
       </div>
     </div>
     <div class="form-group row">
       <label class="col-form-label col-4">Coefficient</label>
       <div class="col-8">
-        <input type="text" class="form-control" formControlName="coeff" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="module.coeff" required>
+        <input type="number" class="form-control" formControlName="coeff"  [(ngModel)]="module.coeff" placeholder="Saisir un numero entre 1 et 10" >
         <span class="text-danger"
               *ngIf="newModuleFormGroup.controls['coeff'].touched
                 && newModuleFormGroup.controls['coeff'].errors
                 && newModuleFormGroup.controls['coeff'].errors!['required']">
-            Coeff is Required
+            Saisir un numero entre 1 et 10
           </span>
       </div>
     </div>
     <div class="form-group row">
       <label class="col-form-label col-4">Taux_horraire</label>
       <div class="col-8">
-        <input type="text" class="form-control"  formControlName="taux_horraire" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="module.taux_horraire" required>
+        <input type="number" class="form-control"  formControlName="taux_horraire"  [(ngModel)]="module.taux_horraire" placeholder="Saisir un numero entre 1 et 50">
         <span class="text-danger"
               *ngIf="newModuleFormGroup.controls['taux_horraire'].touched
                 && newModuleFormGroup.controls['taux_horraire'].errors
                 && newModuleFormGroup.controls['taux_horraire'].errors!['required']">
-            taux horraire is Required
+            Saisir un numero entre 1 et 50
           </span>
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-form-label col-4">Confirmer Le Prof (Obligatoire *) </label>
+      <label class="col-form-label col-4">Nom Du Prof  </label>
       <div class="col-8">
-        <select  name="nomProf" (change)="changeProf($event)" class="form-control" formControlName="nomProf"  >
-          <option  disabled selected value="">{{module.nomProf}}</option>
+        <select  name="nomProf" (change)="changeProf($event)" class="form-control" formControlName="nomProf" [(ngModel)]="module.nomProf" >
+          <option  disabled selected value="">Prof {{module.nomProf}} Courrant(e) </option>
           <option *ngFor="let m of profList" [value]="m.nom_complet"  >{{m.nom_complet}}</option>
 
         </select>
@@ -150,7 +150,7 @@
     <div class="form-group row">
       <div class="col-8 offset-4">
 
-        <button      class="btn btn-primary btn-lg">Modifier</button>
+        <button    [disabled]="!newModuleFormGroup.valid"  class="btn btn-primary btn-lg">Modifier</button>
       </div>
     </div>
   </form>

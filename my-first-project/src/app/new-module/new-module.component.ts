@@ -30,10 +30,10 @@ export class NewModuleComponent implements OnInit {
 
   ngOnInit(): void {
     this.newModuleFormGroup=this.fb.group({
-      nom : this.fb.control("", [Validators.required]),
-      coeff : this.fb.control("",[Validators.required]),
-      taux_horraire : this.fb.control("",[Validators.required]),
-      nomProf : [""],
+      nom : this.fb.control("", [Validators.required,Validators.minLength(3)]),
+      coeff : this.fb.control("",[Validators.required,Validators.min(1),Validators.max(10)]),
+      taux_horraire : this.fb.control("",[Validators.required,Validators.min(1),Validators.max(50)]),
+      nomProf : this.fb.control("",[Validators.required]),
 
 
     });

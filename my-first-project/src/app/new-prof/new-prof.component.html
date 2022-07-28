@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+  <title>Bootstrap Sign up Form Horizontal</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="signup-form">
+  <form [formGroup]="newProfFormGroup" (ngSubmit)="handleSaveProf()">
+    <div class="row">
+      <div class="col-8 offset-4">
+        <h2>Ajout Prof</h2>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Le nom Complet</label>
+      <div class="col-8">
+        <input type="text" class="form-control" formControlName="nom_complet" name="username" required="required">
+        <span class="text-danger" style="font-family: Aldhabi;font-size: 24px"
+              *ngIf="newProfFormGroup.controls['nom_complet'].touched
+                && newProfFormGroup.controls['nom_complet'].errors
+                && newProfFormGroup.controls['nom_complet'].errors!['required']">
+            Le nom est obligatoire
+          </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Email </label>
+      <div class="col-8">
+        <input type="email" formControlName="mail" class="form-control" name="email" required="required">
+        <span class="text-danger" style="font-family: Aldhabi;font-size: 24px"
+              *ngIf="newProfFormGroup.controls['mail'].touched
+                && newProfFormGroup.controls['mail'].errors
+                && newProfFormGroup.controls['mail'].errors!['required']">
+           L'email est obligatoire
+          </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Telephone</label>
+      <div class="col-8">
+        <input type="tel" pattern="[+]{1}[212][0-9]{11}" formControlName="tel" class="form-control" name="password" required="required" >
+        <span class="text-danger" style="font-family: Aldhabi;font-size: 24px"
+              *ngIf="newProfFormGroup.controls['tel'].touched
+                && newProfFormGroup.controls['tel'].errors
+                && newProfFormGroup.controls['tel'].errors!['required']">
+            Le telephone est obligatoire
+          </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Adresse</label>
+      <div class="col-8">
+        <input type="text" formControlName="adresse" class="form-control" name="confirm_password" required="required">
+        <span class="text-danger" style="font-family: Aldhabi;font-size: 24px"
+              *ngIf="newProfFormGroup.controls['adresse'].touched
+                && newProfFormGroup.controls['adresse'].errors
+                && newProfFormGroup.controls['adresse'].errors!['required']">
+            L'adresse est obligatoire
+          </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Nom de département</label>
+      <div class="col-8">
+        <select  name="nom_departement" (change)="changeProf($event)" class="form-control" formControlName="nom_departement" required >
+          <option  disabled selected value="">Choisir un departement...</option>
+          <option *ngFor="let m of depList" [value]="m"  >{{m}}</option>
+
+        </select>
+        <span class="text-danger" style="font-family: Aldhabi;font-size: 24px"
+              *ngIf="newProfFormGroup.controls['nom_departement'].touched
+                && newProfFormGroup.controls['nom_departement'].errors
+                && newProfFormGroup.controls['nom_departement'].errors!['required']">
+            Le nom de departement
+          </span></div>
+    </div>
+    <div class="form-group row">
+      <div class="col-8 offset-4">
+        <button type="submit" [disabled]="!newProfFormGroup.valid" class="btn btn-primary btn-lg">Ajouter</button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

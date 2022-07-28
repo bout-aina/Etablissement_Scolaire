@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <script src="assets/main.js"></script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--========== BOX ICONS ==========-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+  <!--========== CSS ==========-->
+
+
+  <title>Responsive sidebar submenus</title>
+</head>
+<body >
+<!--========== HEADER ==========-->
+
+<!--========== NAV ==========-->
+<div class="nav" id="navbar" style="background-color: white">
+  <nav class="nav__container" >
+    <div>
+      <a href="#" class="nav__link nav__logo">
+        <i class='bx bxs-disc nav__icon' ></i>
+        <span class="nav__logo-name">Bedimcode</span>
+      </a>
+
+      <div class="nav__list">
+        <div class="nav__items">
+          <h3 class="nav__subtitle">Profile</h3>
+
+          <a routerLink="/admin/home" class="nav__link active">
+            <i class='bx bx-home nav__icon' ></i>
+            <span class="nav__name">Gestion Départements</span>
+          </a>
+
+
+
+            <a routerLink="/admin/profs" href="https://www.flaticon.com/free-icons/teacher" class="nav__link">
+
+              <i class='bx bx-user nav__icon' ></i>
+              <span class="nav__name">Gestion Professeurs</span>
+
+            </a>
+
+
+
+
+          <a routerLink="/admin/modules" class="nav__link">
+            <i class='bx bx-book nav__icon' ></i>
+            <span class="nav__name">Gestion Modules</span>
+          </a>
+        </div>
+
+        <div class="nav__items">
+          <h3 class="nav__subtitle">Menu</h3>
+
+          <div class="nav__dropdown">
+            <a href="#" class="nav__link">
+              <i class='bx bx-bell nav__icon' ></i>
+              <span class="nav__name">Notifications</span>
+              <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+            </a>
+
+            <div class="nav__dropdown-collapse">
+              <div class="nav__dropdown-content">
+                <a href="#" class="nav__dropdown-item">Blocked</a>
+                <a href="#" class="nav__dropdown-item">Silenced</a>
+                <a href="#" class="nav__dropdown-item">Publish</a>
+                <a href="#" class="nav__dropdown-item">Program</a>
+              </div>
+            </div>
+
+          </div>
+
+          <a href="#" class="nav__link">
+            <i class='bx bx-compass nav__icon' ></i>
+            <span class="nav__name">Explore</span>
+          </a>
+          <a href="#" class="nav__link">
+            <i class='bx bx-bookmark nav__icon' ></i>
+            <span class="nav__name">Saved</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a (click)="handleLogout()" class="nav__link nav__logout">
+      <i class='bx bx-log-out nav__icon' ></i>
+      <span class="nav__name">Log Out</span>
+
+    </a>
+  </nav>
+</div>
+
+<!--========== CONTENTS ==========-->
+
+
+<main>
+  <section>
+
+  </section>
+</main>
+
+<!--========== MAIN JS ==========-->
+
+</body>
+</html>
+<router-outlet>
+
+
+</router-outlet>

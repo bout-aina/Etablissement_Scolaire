@@ -1,0 +1,88 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+</head>
+<body style="background-color: white">
+<div class="container-xl offset-md-1">
+
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-5">
+            <h2>Gestion des <b>Professeurs</b></h2>
+          </div>
+          <div class="col-sm-7">
+            <a routerLink="/admin/add-prof" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Ajout Prof</span></a>
+
+            <div *ngIf="searchProfs">
+              <div class="search_box col-sm-7">
+
+                <form [formGroup]="searchProfs" (ngSubmit)="handleSearchProfs()">
+
+                  <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+
+                  <input  type="text" formControlName="keyword" placeholder="Search...">
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover"  *ngIf="profs">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Nom Complet</th>
+          <th>Email</th>
+          <th>Adresse</th>
+          <th>Telephone</th>
+          <th>Departement</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of profs | async">
+          <td>{{p.id}}</td>
+          <td><a   onmouseover="this.style.cursor='pointer'" (click)="handleDetailsProf(p)">{{p.nom_complet}}</a></td>
+          <td>{{p.mail}}</td>
+          <td>{{p.tel}}</td>
+          <td>{{p.adresse}}</td>
+          <td><span class="status text-success">&bull;</span>{{p.nom_departement}} </td>
+          <td>
+            <a onmouseover="this.style.cursor='pointer'" (click)="handleEditProf(p)" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">mode_edit</i></a>
+            <a  onmouseover="this.style.cursor='pointer'" (click)="handleDeleteProf(p)" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="clearfix">
+        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a href="#">Previous</a></li>
+          <li class="page-item"><a href="#" class="page-link">1</a></li>
+          <li class="page-item"><a href="#" class="page-link">2</a></li>
+          <li class="page-item active"><a href="#" class="page-link">3</a></li>
+          <li class="page-item"><a href="#" class="page-link">4</a></li>
+          <li class="page-item"><a href="#" class="page-link">5</a></li>
+          <li class="page-item"><a href="#" class="page-link">Next</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>     </body>
+</html>

@@ -1,0 +1,65 @@
+<head>
+  <script src="assets/main1.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+</head>
+
+
+<div class="container">
+
+  <div class="img">
+    <img src="assets/img/BG.png" alt="BG">
+  </div>
+
+  <div class="login-content">
+
+    <form  [formGroup]="userFormGroup" (ngSubmit)="handelLogin()">
+
+      <div class="title-container">
+        <h1>Login</h1>
+        <h2>Hello, Friends!</h2>
+        <p>Enter your personal detail and start journey with us.</p>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}
+
+      </div>
+
+
+      <div class="login-inner-content">
+    <!--{{userFormGroup.value| json}}-->
+
+        <div class="input-div one">
+          <div class="i">
+            <i class='bx bx-user ' ></i>
+          </div>
+          <div class="div">
+
+            <input formControlName="username" type="text" class="input" placeholder="Username">
+          </div>
+        </div>
+
+        <div class="input-div pass">
+          <div class="i">
+
+            <i class='bx bx-lock' ></i>
+
+          </div>
+          <div class="div">
+
+            <input  formControlName="password"  type="password" class="input" placeholder="Password">
+          </div>
+        </div>
+
+        <a href="#">Forgot password / Username</a>
+
+      </div>
+
+      <input type="submit" class="btn" value="Login">
+
+      <h5>Not a member ? <a href="#">Create Account</a></h5>
+
+    </form>
+
+  </div>
+
+</div>

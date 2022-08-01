@@ -17,6 +17,10 @@ import { ProfsComponent } from './profs/profs.component';
 import { DetailsProfComponent } from './details-prof/details-prof.component';
 import { NewProfComponent } from './new-prof/new-prof.component';
 import { UpdateProfComponent } from './update-prof/update-prof.component';
+import { EtudiantComponent } from './etudiant/etudiant.component';
+import { NewEtudiantComponent } from './new-etudiant/new-etudiant.component';
+import { UpdateEtudiantComponent } from './update-etudiant/update-etudiant.component';
+import { DetailsEtudiantComponent } from './details-etudiant/details-etudiant.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,11 @@ import { UpdateProfComponent } from './update-prof/update-prof.component';
     ProfsComponent,
     DetailsProfComponent,
     NewProfComponent,
-    UpdateProfComponent
+    UpdateProfComponent,
+    EtudiantComponent,
+    NewEtudiantComponent,
+    UpdateEtudiantComponent,
+    DetailsEtudiantComponent
   ],
     imports: [
         BrowserModule,

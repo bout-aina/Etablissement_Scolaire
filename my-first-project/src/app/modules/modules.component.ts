@@ -77,7 +77,7 @@ export class ModulesComponent implements OnInit {
     this.router.navigateByUrl("admin/updateModule/"+module.id,{state :module});
   }
   handleSavemodule() {
-    this.router.navigateByUrl("admin/newModule",);
+    this.router.navigateByUrl("admin/newModule");
   }
 
 }

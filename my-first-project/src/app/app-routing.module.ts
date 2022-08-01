@@ -12,6 +12,10 @@ import {ProfsComponent} from "./profs/profs.component";
 import {NewProfComponent} from "./new-prof/new-prof.component";
 import {UpdateProfComponent} from "./update-prof/update-prof.component";
 import {DetailsProfComponent} from "./details-prof/details-prof.component";
+import {EtudiantComponent} from "./etudiant/etudiant.component";
+import {NewEtudiantComponent} from "./new-etudiant/new-etudiant.component";
+import {UpdateEtudiantComponent} from "./update-etudiant/update-etudiant.component";
+import {DetailsEtudiantComponent} from "./details-etudiant/details-etudiant.component";
 
 const routes: Routes = [
   {path: "login", component : LoginComponent},
@@ -27,6 +31,10 @@ const routes: Routes = [
       {path: "add-prof", component : NewProfComponent},
       {path: "updateProf/:id", component : UpdateProfComponent},
       {path: "detailsProf/:id", component : DetailsProfComponent},
+      {path: "etudiants", component : EtudiantComponent},
+      {path: "newEtudiant", component : NewEtudiantComponent},
+      {path: "updateEtudiant/:id", component : UpdateEtudiantComponent},
+      {path: "detailsetd/:id", component : DetailsEtudiantComponent},
     ]
     },
 

@@ -18,6 +18,8 @@ public class Departement {
     private String chef_Departement;
     private String Description;
 
+    @OneToMany(mappedBy = "departement",fetch = FetchType.LAZY)
+    private List<Etudiant> etudiants;
 
     @OneToMany(mappedBy = "departement",fetch = FetchType.LAZY)
     private List<Profs> profs;

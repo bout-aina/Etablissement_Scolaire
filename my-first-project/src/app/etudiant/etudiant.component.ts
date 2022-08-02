@@ -57,4 +57,7 @@ export class EtudiantComponent implements OnInit {
 
   }
 
+  handlepdf(m: Etudiant) {
+    this.router.navigateByUrl("admin/printetd/"+m.id,{state :m});
+  }
 }

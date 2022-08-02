@@ -21,6 +21,9 @@ import { EtudiantComponent } from './etudiant/etudiant.component';
 import { NewEtudiantComponent } from './new-etudiant/new-etudiant.component';
 import { UpdateEtudiantComponent } from './update-etudiant/update-etudiant.component';
 import { DetailsEtudiantComponent } from './details-etudiant/details-etudiant.component';
+import { PdfDetailsEtdComponent } from './pdf-details-etd/pdf-details-etd.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +41,8 @@ import { DetailsEtudiantComponent } from './details-etudiant/details-etudiant.co
     EtudiantComponent,
     NewEtudiantComponent,
     UpdateEtudiantComponent,
-    DetailsEtudiantComponent
+    DetailsEtudiantComponent,
+    PdfDetailsEtdComponent
   ],
     imports: [
         BrowserModule,
@@ -46,7 +50,7 @@ import { DetailsEtudiantComponent } from './details-etudiant/details-etudiant.co
         ReactiveFormsModule,
         HttpClientModule,
         FormsModule,
-        NgxPaginationModule
+        NgxPaginationModule,
 
     ],
   providers: [],

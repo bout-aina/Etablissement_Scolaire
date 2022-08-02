@@ -1,31 +1,24 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Profs} from "../model/prof.model";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ProfsService} from "../services/profs.service";
 import {Etudiant} from "../model/etudiant.model";
-import {Module} from "../model/module.model";
-import {Observable} from "rxjs";
-import {EtudiantService} from "../services/etudiant.service";
-import  * as jspdf from 'jspdf'
+import {ActivatedRoute, Router} from "@angular/router";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-
-
-
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-details-etudiant',
-  templateUrl: './details-etudiant.component.html',
-  styleUrls: ['./details-etudiant.component.css']
+  selector: 'app-pdf-details-etd',
+  templateUrl: './pdf-details-etd.component.html',
+  styleUrls: ['./pdf-details-etd.component.css']
 })
-export class DetailsEtudiantComponent implements OnInit {
-
+export class PdfDetailsEtdComponent implements OnInit {
+  myDate = new Date();
   @ViewChild('pdfTable')
   pdfTable!: ElementRef;
   moduleId!: string;
   etd! : Etudiant ;
   constructor(private route : ActivatedRoute, private router :Router) {
     this.etd=this.router.getCurrentNavigation()?.extras.state as Etudiant;
+
   }
 
   ngOnInit(): void {
@@ -34,7 +27,7 @@ export class DetailsEtudiantComponent implements OnInit {
   }
 
   printthis() {
-    var elements = document.getElementById('reka')
+    var elements = document.getElementById('page')
 
     // @ts-ignore
     html2canvas(elements).then((canvas) => {
@@ -49,3 +42,4 @@ export class DetailsEtudiantComponent implements OnInit {
 
   }
 }
+

@@ -16,6 +16,7 @@ import {EtudiantComponent} from "./etudiant/etudiant.component";
 import {NewEtudiantComponent} from "./new-etudiant/new-etudiant.component";
 import {UpdateEtudiantComponent} from "./update-etudiant/update-etudiant.component";
 import {DetailsEtudiantComponent} from "./details-etudiant/details-etudiant.component";
+import {PdfDetailsEtdComponent} from "./pdf-details-etd/pdf-details-etd.component";
 
 const routes: Routes = [
   {path: "login", component : LoginComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
       {path: "newEtudiant", component : NewEtudiantComponent},
       {path: "updateEtudiant/:id", component : UpdateEtudiantComponent},
       {path: "detailsetd/:id", component : DetailsEtudiantComponent},
+      {path: "printetd/:id", component : PdfDetailsEtdComponent},
     ]
     },
 

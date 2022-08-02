@@ -216,7 +216,7 @@
             <th>Etat</th>
             <th>Nom departement</th>
             <th>Action</th>
-            <th>Details</th>
+
           </tr>
           </thead>
           <tbody>
@@ -236,11 +236,13 @@
             <td>
               <a onmouseover="this.style.cursor='pointer'" (click)="handleEditEtudiant(m)" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">mode_edit</i></a>
               <a onmouseover="this.style.cursor='pointer'" (click)="handleDeleteModule(m.id,i)" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-            </td>
-            <td>
               <a onmouseover="this.style.cursor='pointer'" (click)="handleDetailetd(m)" class="details" title="Details" data-toggle="tooltip"><i class="material-icons">info</i></a>
 
-            </td>
+
+
+            <a onmouseover="this.style.cursor='pointer'" (click)="handlepdf(m)" class="details" title="Details" data-toggle="tooltip"><i class="material-icons">print</i></a></td>
+
+
           </tr>
 
           </tbody>

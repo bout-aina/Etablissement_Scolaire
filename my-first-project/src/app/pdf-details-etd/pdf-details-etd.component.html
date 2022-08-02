@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>John Doe | Resume</title>
+  <meta name="description" content="John Doe's Resume">
+  <meta name="keywords" content="John, Doe, Resume">
+
+</head>
+<body>
+<button class="offset-md-2" style="background-color: lightskyblue; border-radius: 50px;border-color: lightskyblue" (click)="printthis()">Dowload PDF</button>
+<div id="page">
+  <div id="header">
+    <div id="headerLeft">
+      <h2>Logo</h2>
+      <p id="caption">le nom de l'école</p>
+    </div>
+    <img id="photo" src="https://campus.hautsdefrance.fr/ti/wp-content/uploads/sites/5/2019/03/votre-photo-ici.jpg" alt="John Doe">
+
+  </div>
+  <div class="section">
+    <div class="sectionLeft">
+      <h2>Information<br>personnel</h2>
+    </div>
+    <div class="sectionRight">
+      <div class="entry">
+        <p>
+          <strong>Nom Complet: </strong>{{etd.nom}}<br>
+          <strong>Adresse: </strong>{{etd.adresse}}<br>
+          <strong>Tel personnel:</strong>{{etd.telper}}<br>
+          <strong>Tel parentel:</strong>{{etd.telpar}}<br>
+          <strong>Email: </strong>{{etd.mail}}<br>
+          <strong>Sex: </strong>{{etd.sex}}<br>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sectionLeft">
+      <h2>Details<br>suplémentaire</h2>
+    </div>
+    <div class="sectionRight">
+      <div class="entry">
+
+        <h3>Niveau</h3>
+        <h4>{{etd.etat}}</h4>
+      </div>
+      <div class="entry">
+
+        <h3>Fillière associé</h3>
+        <h4>{{etd.nom_departement}}</h4>
+
+      </div>
+      <div class="entry">
+
+        <h3>Date d'inscription</h3>
+        <h4>{{myDate | date:'yyyy-MM-dd'}}</h4>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="section">
+    <div class="sectionLeft">
+      <h4>Signature</h4>
+
+    </div>
+    <div class="sectionRight">
+      <div class="entry">
+        <h4 style=" text-align: right;">Cachet</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

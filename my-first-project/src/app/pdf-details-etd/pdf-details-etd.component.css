@@ -57,7 +57,7 @@ body {
 
 div#page {
   width: 800px;
-  height: 800px;
+
   margin: 20px auto;
   padding: 10px;
   -moz-border-radius: 11px;
@@ -237,7 +237,7 @@ span#download {
 
   div#page {
     width: 800px;
-    height: 800px;
+
     -moz-border-radius: 0;
     border-radius: 0;
     -moz-box-shadow: none;

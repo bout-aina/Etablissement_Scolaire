@@ -17,6 +17,11 @@ import {NewEtudiantComponent} from "./new-etudiant/new-etudiant.component";
 import {UpdateEtudiantComponent} from "./update-etudiant/update-etudiant.component";
 import {DetailsEtudiantComponent} from "./details-etudiant/details-etudiant.component";
 import {PdfDetailsEtdComponent} from "./pdf-details-etd/pdf-details-etd.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {EventsComponent} from "./events/events.component";
+import {NewEventComponent} from "./new-event/new-event.component";
+import {UpdateEventComponent} from "./update-event/update-event.component";
+
 
 const routes: Routes = [
   {path: "login", component : LoginComponent},
@@ -37,6 +42,12 @@ const routes: Routes = [
       {path: "updateEtudiant/:id", component : UpdateEtudiantComponent},
       {path: "detailsetd/:id", component : DetailsEtudiantComponent},
       {path: "printetd/:id", component : PdfDetailsEtdComponent},
+      {path: "statistics", component : DashboardComponent},
+      {path: "events", component : EventsComponent},
+      {path: "newEvent", component : NewEventComponent},
+      {path: "updateEvent/:id", component : UpdateEventComponent}
+
+
     ]
     },
 

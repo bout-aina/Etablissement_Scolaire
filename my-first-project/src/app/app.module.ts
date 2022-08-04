@@ -22,6 +22,10 @@ import { NewEtudiantComponent } from './new-etudiant/new-etudiant.component';
 import { UpdateEtudiantComponent } from './update-etudiant/update-etudiant.component';
 import { DetailsEtudiantComponent } from './details-etudiant/details-etudiant.component';
 import { PdfDetailsEtdComponent } from './pdf-details-etd/pdf-details-etd.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { EventsComponent } from './events/events.component';
+import { NewEventComponent } from './new-event/new-event.component';
+import { UpdateEventComponent } from './update-event/update-event.component';
 
 
 @NgModule({
@@ -42,7 +46,12 @@ import { PdfDetailsEtdComponent } from './pdf-details-etd/pdf-details-etd.compon
     NewEtudiantComponent,
     UpdateEtudiantComponent,
     DetailsEtudiantComponent,
-    PdfDetailsEtdComponent
+    PdfDetailsEtdComponent,
+    DashboardComponent,
+    EventsComponent,
+    NewEventComponent,
+    UpdateEventComponent,
+
   ],
     imports: [
         BrowserModule,

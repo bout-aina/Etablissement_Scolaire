@@ -10,4 +10,5 @@ public class ProfByDepartementDTO {
     private String chef_Departement;
     private String Description;
     private List<String> nom_prof;
+    private  List<String> nom_etd;
 }

@@ -26,6 +26,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventsComponent } from './events/events.component';
 import { NewEventComponent } from './new-event/new-event.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
+import { NgChartsModule } from 'ng2-charts';
+import {NgApexchartsModule} from "ng-apexcharts";
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { UpdateEventComponent } from './update-event/update-event.component';
     NewEventComponent,
     UpdateEventComponent,
 
+
+
   ],
     imports: [
         BrowserModule,
@@ -60,7 +64,8 @@ import { UpdateEventComponent } from './update-event/update-event.component';
         HttpClientModule,
         FormsModule,
         NgxPaginationModule,
-
+        NgChartsModule,
+        NgApexchartsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

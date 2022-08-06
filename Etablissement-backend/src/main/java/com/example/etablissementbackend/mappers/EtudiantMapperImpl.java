@@ -25,7 +25,7 @@ public class EtudiantMapperImpl {
         etudiantDTO.setSex(etudiant.getSex());
         etudiantDTO.setEtat(etudiant.getEtat());
         etudiantDTO.setImage(etudiant.getImage());
-        etudiantDTO.setNom_departement(etudiant.getDepartement().getNom_Departement());
+        etudiantDTO.setNom_departement(etudiant.getDepartement().getNomdep());
 
 
 

@@ -18,6 +18,9 @@ public interface ProfsService {
 
     List<ProfsDTO> ListProfs();
     List<Departement> searchDepartement(String keyword);
+
+    List<Integer> nbrProfPourChaqueDep();
+
     List<String> AllDepartement();
     List<ProfsDTO> searchProf(String keyword);
     void deleteProfs(Long ProfsId);

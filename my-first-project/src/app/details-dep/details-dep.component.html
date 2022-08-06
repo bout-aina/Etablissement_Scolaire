@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="main-body offset-md-2">
+
+
+
+    <div class="row gutters-sm">
+
+      <div class="col-md-12">
+        <div class="card mb-3">
+          <div class="card-body" style="box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">ID</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{moduleId}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Nom Departement</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{module.nomdep}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Chef Departement</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{module.chef}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">La description</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{module.description}}
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="row gutters-sm">
+          <div class="col-sm-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body" style="box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);">
+                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Liste </i>des profs</h6>
+                <div *ngFor="let m of profs">
+
+
+                <small>{{m}}</small>
+                <div class="progress mb-3" style="height: 5px">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body" style="box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);">
+                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Liste </i>des etudiants</h6>
+                <div *ngFor="let m of etds">
+                <small>{{m}}</small>
+                <div class="progress mb-3" style="height: 5px">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+  </div>
+</div>

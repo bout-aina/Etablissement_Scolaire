@@ -4,6 +4,7 @@ import com.example.etablissementbackend.dtos.DepartementDTO;
 import com.example.etablissementbackend.dtos.ModuleByProfDTO;
 import com.example.etablissementbackend.dtos.ProfByDepartementDTO;
 import com.example.etablissementbackend.entities.Departement;
+import com.example.etablissementbackend.entities.Etudiant;
 import com.example.etablissementbackend.entities.Module;
 import com.example.etablissementbackend.entities.Profs;
 import com.example.etablissementbackend.exceptions.DepartementNotFoundExeception;
@@ -31,14 +32,14 @@ public class DepartementServiceImpl implements DepartementService {
     @Override
     public DepartementDTO saveDepartement(DepartementDTO departementDTO) {
         log.info("Saving new Departement");
-         Departement departement=dtoMapper.fromDepartementDTO(departementDTO);
-         Departement savedDepartement=departementRepository.save(departement);
+        Departement departement=dtoMapper.fromDepartementDTO(departementDTO);
+        Departement savedDepartement=departementRepository.save(departement);
         return dtoMapper.fromDepartement(savedDepartement);
     }
 
     @Override
     public List<DepartementDTO> listDepartement() {
-        List<Departement> departements = departementRepository.findAll();
+        List<Departement> departements = departementRepository.findAllByOrderByNomdep();
         List<DepartementDTO> departementDTOS= departements.stream()
                 .map(departement -> dtoMapper.fromDepartement(departement))
                 .collect(Collectors.toList());
@@ -46,40 +47,43 @@ public class DepartementServiceImpl implements DepartementService {
     }
 
 
-@Override
+    @Override
     public ProfByDepartementDTO getDepartement(Long departementId)  {
-    Departement p= departementRepository.findById(departementId).orElse(null);
-    ProfByDepartementDTO m= new ProfByDepartementDTO();
-    m.setId(p.getId());
-    m.setChef_Departement(p.getChef_Departement());
-    m.setNom_Departement(p.getNom_Departement());
-    m.setDescription(p.getDescription());
+        Departement p= departementRepository.findById(departementId).orElse(null);
+        ProfByDepartementDTO m= new ProfByDepartementDTO();
+        m.setId(p.getId());
+        m.setChef_Departement(p.getChef());
+        m.setNom_Departement(p.getNomdep());
+        m.setDescription(p.getDescription());
 
-    List<String> listpr = new ArrayList<String>();
-    int i=p.getProfs().size();
-    while (i!=0)
-    {
-        Profs md=p.getProfs().get(i-1);
-        listpr.add(md.getNom_Complet());
-        i--;
-    }
-       m.setNom_prof(listpr);
-       return m;
+        List<String> listpr = new ArrayList<String>();
+        int i=p.getProfs().size();
+        while (i!=0)
+        {
+            Profs md=p.getProfs().get(i-1);
+            listpr.add(md.getNom_Complet());
+            i--;
+        }
+        m.setNom_prof(listpr);
+        return m;
 
 
-    }
-    @Override
-    public DepartementDTO updateDepartement(DepartementDTO departementDTO) {
-        log.info("Saving new Departement");
-        Departement departement=dtoMapper.fromDepartementDTO(departementDTO);
-        Departement savedDepartement=departementRepository.save(departement);
-        return dtoMapper.fromDepartement(savedDepartement);
     }
     @Override
-     public void deleteDepartement(Long departementId){
+    public Departement updateDepartement(Long id,Departement departement) {
+        Departement dep=departementRepository.findById(id).orElse(null);
+
+        dep.setNomdep(departement.getNomdep());
+        dep.setChef(departement.getChef());
+        dep.setDescription(departement.getDescription());
+        Departement savedEvent = departementRepository.save(dep);
+        return savedEvent;
+    }
+    @Override
+    public void deleteDepartement(Long departementId){
         departementRepository.deleteById(departementId);
 
-     }
+    }
 
     @Override
     public List<DepartementDTO> searchDepartements(String keyword) {
@@ -88,4 +92,34 @@ public class DepartementServiceImpl implements DepartementService {
         return customerDTOS;
     }
 
+    @Override
+    public List<String> getEtdOfDep(Long id) {
+        Departement p= departementRepository.findById(id).orElse(null);
+
+
+        List<String> listetd = new ArrayList<String>();
+        int i=p.getEtudiants().size();
+        while (i!=0)
+        {
+            Etudiant md=p.getEtudiants().get(i-1);
+            listetd.add(md.getNom());
+            i--;
+        }
+        return listetd;    }
+
+    @Override
+    public List<String> getProfOfDep(Long id) {
+        Departement p= departementRepository.findById(id).orElse(null);
+
+
+        List<String> listmd = new ArrayList<String>();
+        int i=p.getProfs().size();
+        while (i!=0)
+        {
+            Profs md=p.getProfs().get(i-1);
+            listmd.add(md.getNom_Complet());
+            i--;
+        }
+        return listmd;
+    }
 }

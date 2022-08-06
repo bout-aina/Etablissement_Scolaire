@@ -28,6 +28,9 @@ import { NewEventComponent } from './new-event/new-event.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
 import { NgChartsModule } from 'ng2-charts';
 import {NgApexchartsModule} from "ng-apexcharts";
+import { DetailsDepComponent } from './details-dep/details-dep.component';
+import { NewDepComponent } from './new-dep/new-dep.component';
+import { UpdateDepComponent } from './update-dep/update-dep.component';
 
 
 @NgModule({
@@ -53,6 +56,9 @@ import {NgApexchartsModule} from "ng-apexcharts";
     EventsComponent,
     NewEventComponent,
     UpdateEventComponent,
+    DetailsDepComponent,
+    NewDepComponent,
+    UpdateDepComponent,
 
 
 

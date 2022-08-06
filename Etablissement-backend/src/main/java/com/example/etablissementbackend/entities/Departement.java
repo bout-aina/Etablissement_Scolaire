@@ -14,9 +14,9 @@ import java.util.List;
 public class Departement {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Nom_Departement;
-    private String chef_Departement;
-    private String Description;
+    private String nomdep;
+    private String chef;
+    private String description;
 
     @OneToMany(mappedBy = "departement",fetch = FetchType.LAZY)
     private List<Etudiant> etudiants;

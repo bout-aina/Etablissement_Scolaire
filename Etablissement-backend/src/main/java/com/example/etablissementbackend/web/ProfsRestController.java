@@ -32,6 +32,10 @@ public class ProfsRestController {
     public List<ProfsDTO> searchProfs(@RequestParam(name = "keyword",defaultValue = "") String keyword){
         return profsService.searchProf("%"+keyword+"%");
     }
+    @GetMapping("/profsNbr")
+    public List<Integer> nbrProfPourChaqueDep(){
+        return profsService.nbrProfPourChaqueDep();
+    }
     @GetMapping("/departement/search")
     public List<Departement> searchDep(@RequestParam(name = "keyword",defaultValue = "") String keyword){
         return profsService.searchDepartement("%"+keyword+"%");

@@ -16,6 +16,7 @@ import {ApexChart, ApexNonAxisChartSeries} from "ng-apexcharts";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
   chartSeries : ApexNonAxisChartSeries = [40,32,28,55];
   chartDetails : ApexChart ={
     type:'pie',
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
   constructor(private etdService: EtudiantService,
               private moduleService: ModuleService,
               private profService: ProfsService,
+
               private  eventService : EventService) {
     Chart.register(...registerables);
   }
@@ -37,8 +39,18 @@ export class DashboardComponent implements OnInit {
   lengthProf: number = 0;
   lengthActivity: number = 0;
 
-  ngOnInit(): void {
 
+
+
+
+  ngOnInit(): void {
+   //nbr des prof pour chaque departement
+
+    this.profService.nbrProfPourChaqueDep().subscribe((data)=>{
+      let nbrProf = data;
+
+
+    })
     // Bar chart
     const barCanvasEle: any = document.getElementById('bar_chart')
     const barChart = new Chart(barCanvasEle.getContext('2d'), {
@@ -84,10 +96,10 @@ export class DashboardComponent implements OnInit {
     const lineChar = new Chart(lineCanvasEle.getContext('2d'), {
       type: 'line',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: ['January', 'February', 'March'],
         datasets: [
-          { data: [12, 15, 18, 14, 11, 19, 12], label: 'Orders', borderColor: 'rgba(54, 162, 235)' },
-          { data: [65, 59, 80, 81, 56, 55, 40], label: 'Sales', borderColor: 'rgb(75, 192, 192)' },
+          { data: [1,2,3], label: 'Profs', borderColor: 'rgba(54, 162, 235)' },
+          { data: [4,3,1], label: 'Etudiants', borderColor: 'rgb(75, 192, 192)' },
         ],
       },
       options: {

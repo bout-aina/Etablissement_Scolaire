@@ -2,6 +2,7 @@ package com.example.etablissementbackend.web;
 
 import com.example.etablissementbackend.dtos.DepartementDTO;
 import com.example.etablissementbackend.dtos.ProfByDepartementDTO;
+import com.example.etablissementbackend.entities.Departement;
 import com.example.etablissementbackend.exceptions.DepartementNotFoundExeception;
 import com.example.etablissementbackend.services.DepartementService;
 import lombok.AllArgsConstructor;
@@ -19,35 +20,41 @@ public class DepartementResController {
     private DepartementService departementService;
 
     @GetMapping("/departements")
-     public List<DepartementDTO> departements(){
-         return departementService.listDepartement();
+    public List<DepartementDTO> departements(){
+        return departementService.listDepartement();
 
-     }
+    }
     @GetMapping("/departements/search")
     public List<DepartementDTO> searchCustomers(@RequestParam(name ="keyword",defaultValue = "") String keyword){
         return departementService.searchDepartements("%"+keyword+"%");
     }
-     @GetMapping("/departements/{departementId}/listProfs")
-     public ProfByDepartementDTO getDepartement(@PathVariable
-                                                     Long departementId)  {
+    @GetMapping("/departements/{departementId}/listProfs")
+    public ProfByDepartementDTO getDepartement(@PathVariable
+                                               Long departementId)  {
 
-      return departementService.getDepartement(departementId);
-     }
-     @PostMapping("/departements")
-     public DepartementDTO saveDepartement(@RequestBody DepartementDTO departementDTO){
+        return departementService.getDepartement(departementId);
+    }
+    @PostMapping("/departements")
+    public DepartementDTO saveDepartement(@RequestBody DepartementDTO departementDTO){
 
         return departementService.saveDepartement(departementDTO);
 
-     }
-     @PutMapping("/departements/{departementId}")
-     public  DepartementDTO updateDepartement( @PathVariable Long departementId, @RequestBody DepartementDTO departementDTO){
-        departementDTO.setId(departementId);
-        return departementService.updateDepartement(departementDTO);
-     }
-      @DeleteMapping("/departement/{id}")
-     public void deleteDepartement(@PathVariable Long id){
+    }
+    @PutMapping("/departements/{id}")
+    public Departement updateDep(@PathVariable Long id, @RequestBody Departement departement) {
+        return departementService.updateDepartement(id,departement);
+    }
+    @DeleteMapping("/departement/{id}")
+    public void deleteDepartement(@PathVariable Long id){
 
         departementService.deleteDepartement(id);
-     }
-
+    }
+    @GetMapping("/departement/{id}/etudiants")
+    public List<String> getEtdOfDep(@PathVariable Long id){
+        return departementService.getEtdOfDep(id);
+    }
+    @GetMapping("/departement/{id}/profs")
+    public List<String> getProfOfDep(@PathVariable Long id){
+        return departementService.getProfOfDep(id);
+    }
 }

@@ -1,7 +1,5 @@
 package com.example.etablissementbackend.services;
 
-import com.example.etablissementbackend.dtos.ModuleByProfDTO;
-import com.example.etablissementbackend.dtos.ModuleDTO;
 import com.example.etablissementbackend.dtos.ProfsDTO;
 import com.example.etablissementbackend.entities.Departement;
 import com.example.etablissementbackend.entities.Module;
@@ -35,7 +33,7 @@ public class ProfsServiceImpl implements ProfsService{
         Departement dep;
         for (Departement d:deplist)
         {
-            if(d.getNom_Departement().equals(profsDTO.getNom_departement()))
+            if(d.getNomdep().equals(profsDTO.getNom_departement()))
             {
                 dep=departementRepository.findById(d.getId()).orElse(null);
                 Profs p=new Profs();
@@ -58,7 +56,7 @@ public class ProfsServiceImpl implements ProfsService{
         Departement dep;
         for (Departement d:deplist)
         {
-            if(d.getNom_Departement().equals(profsDTO.getNom_departement()))
+            if(d.getNomdep().equals(profsDTO.getNom_departement()))
             {
                 dep=departementRepository.findById(d.getId()).orElse(null);
                 Profs p=profsRepository.findById(idprof).orElse(null);
@@ -97,6 +95,12 @@ public class ProfsServiceImpl implements ProfsService{
         List<Departement> dep= departementRepository.searchDepartement(keyword);
         return dep;
     }
+    @Override
+    public  List<Integer> nbrProfPourChaqueDep()
+    {
+        List<Integer> nbr = profsRepository.nbrProfPourChaqueDep();
+        return  nbr;
+    }
 
     @Override
     public List<String> AllDepartement() {
@@ -104,7 +108,7 @@ public class ProfsServiceImpl implements ProfsService{
         List<String> names = new ArrayList<String>();
         for(Departement d:dep)
         {
-            names.add(d.getNom_Departement());
+            names.add(d.getNomdep());
         }
         return names;
     }

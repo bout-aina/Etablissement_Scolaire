@@ -22,7 +22,7 @@ public class ProfsMapperImpl {
         profsDTO.setMail(profs.getMail());
         profsDTO.setTel(profs.getTel());
         profsDTO.setAdresse(profs.getAdresse());
-        profsDTO.setNom_departement(profs.getDepartement().getNom_Departement());
+        profsDTO.setNom_departement(profs.getDepartement().getNomdep());
         return profsDTO;
 
     }

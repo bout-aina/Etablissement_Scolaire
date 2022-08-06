@@ -9,9 +9,9 @@ import lombok.Data;
 public class DepartementDTO {
 
     private Long id;
-    private String Nom_Departement;
-    private String chef_Departement;
-    private String Description;
+    private String nomdep;
+    private String chef;
+    private String description;
 
 
 }

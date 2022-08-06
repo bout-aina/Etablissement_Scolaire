@@ -11,9 +11,10 @@ import java.util.List;
 @Repository
 public interface DepartementRepository  extends JpaRepository<Departement,Long> {
     // List<Departement> findByNom_Departement(String nom_departement);
-    @Query("select c from Departement c where c.Nom_Departement like :kw")
+    @Query("select c from Departement c where c.nomdep like :kw")
     List<Departement> searchDepartement(@Param("kw") String keyword);
 
+    public List<Departement> findAllByOrderByNomdep();
 
 }
 

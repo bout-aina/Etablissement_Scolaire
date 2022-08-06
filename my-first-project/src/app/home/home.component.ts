@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../services/authentication.service";
 import {Route, Router} from "@angular/router";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Etudiant} from "../model/etudiant.model";
+import {EtudiantService} from "../services/etudiant.service";
+import {Departement} from "../model/departement.model";
+import {DepartementService} from "../services/departement.service";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -9,17 +15,63 @@ import {Route, Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public authService : AuthenticationService,
+  totalLenght : any;
+  page : number =1;
+  searchformGroup: FormGroup = this.fb.group({
+    keyword : this.fb.control("")
+  });
+
+  errorMessage!: string;
+  mydep!: Departement;
+  snapshot:any =[];
+  constructor(private departementService: DepartementService,
+
+              private fb : FormBuilder,
               private router : Router) { }
 
   ngOnInit(): void {
+    this.departementService.depslist().subscribe((data)=>{
+      this.snapshot = data;
+      this.totalLenght = data.length;
+      console.log(this.snapshot)
+    })
+
+
+  }
+  handleSavedep() {
+    this.router.navigateByUrl("admin/newDep",);
   }
 
-  handleLogout() {
-    this.authService.logout().subscribe({
-      next :(data)=>{
-        this.router.navigateByUrl("/login");
+
+  handleDeleteModule(id : number , index : number ) {
+    let conf = confirm("Are you sure?");
+    if(!conf) return;
+    this.departementService.deleteEtd(id).subscribe({
+      next : (resp) => {
+        this.snapshot=this.snapshot.pipe(
+          map(data=>{
+            // @ts-ignore
+            let index=data.indexOf(m);
+            // @ts-ignore
+            data.slice(index,1)
+            return data;
+          })
+        );
+      },
+      error : err => {
+        console.log(err);
       }
-    });
+    })
+
   }
+  handleEditEtudiant(module: Departement) {
+    this.router.navigateByUrl("admin/updateDep/"+module.id,{state :module});
+  }
+  handleDetailetd(module: Departement) {
+
+    this.router.navigateByUrl("admin/detailsdep/"+module.id,{state :module});
+
+  }
+
+
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+  <title>Bootstrap Sign up Form Horizontal</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="signup-form">
+  <form [formGroup]="newProfFormGroup" (ngSubmit)="handleSaveProf()">
+    <div class="row">
+      <div class="col-8 offset-4">
+        <h2>Ajout Dep</h2>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Le nom de departement</label>
+      <div class="col-8">
+        <input type="text" class="form-control" formControlName="nomdep" name="username" required="required">
+        <span class="text-danger" style="font-family: Aldhabi;font-size: 24px"
+              *ngIf="newProfFormGroup.controls['nomdep'].touched
+                && newProfFormGroup.controls['nomdep'].errors
+                && newProfFormGroup.controls['nomdep'].errors!['required']">
+            Le nom de departement est obligatoire
+          </span>
+      </div>
+    </div> <div class="form-group row">
+    <label class="col-form-label col-4">Le chef de departement</label>
+    <div class="col-8">
+      <input type="text" class="form-control" formControlName="chef" name="username" required="required">
+      <span class="text-danger" style="font-family: Aldhabi;font-size: 24px"
+            *ngIf="newProfFormGroup.controls['chef'].touched
+                && newProfFormGroup.controls['chef'].errors
+                && newProfFormGroup.controls['chef'].errors!['required']">
+            Le chef de departement est obligatoire
+          </span>
+    </div>
+  </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Description</label>
+      <div class="col-8">
+        <textarea  class="form-control" formControlName="description" name="username" required="required"></textarea>
+
+        <span class="text-danger" style="font-family: Aldhabi;font-size: 24px"
+              *ngIf="newProfFormGroup.controls['description'].touched
+                 && newProfFormGroup.controls['description'].errors
+                 && newProfFormGroup.controls['description'].errors!['required']">
+             La Description est obligatoire
+           </span>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-8 offset-4">
+        <button type="submit" [disabled]="!newProfFormGroup.valid" class="btn btn-primary btn-lg">Ajouter</button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

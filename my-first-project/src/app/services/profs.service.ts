@@ -18,6 +18,9 @@ export class ProfsService {
   public searchProfs(keyword : string):Observable<Array<Profs>>{
     return this.http.get<Array<Profs>>(environment.backendHost+"/profs/search?keyword="+keyword)
   }
+  public nbrProfPourChaqueDep():Observable<Array<Number>>{
+    return this.http.get<Array<Number>>(environment.backendHost+"/profsNbr")
+  }
   public saveProf(profs: Profs):Observable<Profs>{
     return this.http.post<Profs>(environment.backendHost+"/profs",profs);
   }
@@ -34,4 +37,6 @@ export class ProfsService {
   public getModuleOfProf(id: number){
     return this.http.get(environment.backendHost+"/profs/"+id+"/listModule");
   }
+
+
 }

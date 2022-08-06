@@ -44,7 +44,7 @@ public class EtudiantServiceImpl implements EtudiantService{
         Departement dep;
         for (Departement d:deplist)
         {
-            if(d.getNom_Departement().equals(etudiantDTO.getNom_departement()))
+            if(d.getNomdep().equals(etudiantDTO.getNom_departement()))
             {
                 dep=departementRepository.findById(d.getId()).orElse(null);
                 Etudiant etudiant = new Etudiant();
@@ -76,7 +76,7 @@ public class EtudiantServiceImpl implements EtudiantService{
         Departement dep;
         for (Departement d:deplist)
         {
-            if(d.getNom_Departement().equals(etudiantDTO.getNom_departement()))
+            if(d.getNomdep().equals(etudiantDTO.getNom_departement()))
             {
                 dep=departementRepository.findById(d.getId()).orElse(null);
                 Etudiant etudiant = etudiantRepository.findById(idetd).orElse(null);

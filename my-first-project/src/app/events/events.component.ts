@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 
 import {Router} from "@angular/router";
 import {EventService} from "../services/event.service";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-events',
@@ -38,9 +39,25 @@ export class EventsComponent implements OnInit {
 
 
   handleDeleteEvent(id : number , index : number ) {
-    this.eventService.deleteEvent(id).subscribe(response =>{
-      this.snapshot.splice(index, 1);
-    });
+    let conf = confirm("Are you sure?");
+    if(!conf) return;
+    this.eventService.deleteEvent(id).subscribe({
+      next : (resp) => {
+        this.snapshot=this.snapshot.pipe(
+          map(data=>{
+            // @ts-ignore
+            let index=data.indexOf(m);
+            // @ts-ignore
+            data.slice(index,1)
+            return data;
+          })
+        );
+      },
+      error : err => {
+        console.log(err);
+      }
+    })
+
   }
   handleEditEvent(event: Event,id:number) {
     this.router.navigateByUrl("admin/updateEvent/"+id,{state :event});

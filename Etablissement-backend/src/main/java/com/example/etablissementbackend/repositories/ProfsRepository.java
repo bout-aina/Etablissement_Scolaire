@@ -14,5 +14,6 @@ public interface ProfsRepository extends JpaRepository<Profs,Long> {
     @Query("select c from Profs c where c.Nom_Complet like :kw")
     List<Profs> searchProf(@Param("kw") String keyword);
 
-
+    @Query("select count(p.id) from  Profs p group by p.departement")
+    List<Integer> nbrProfPourChaqueDep();
 }

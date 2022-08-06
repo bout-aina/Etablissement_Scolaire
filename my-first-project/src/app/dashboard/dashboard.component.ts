@@ -5,6 +5,9 @@ import {ProfsService} from "../services/profs.service";
 import {EventService} from "../services/event.service";
 import { Chart, registerables } from 'chart.js';
 import {ApexChart, ApexNonAxisChartSeries} from "ng-apexcharts";
+import {DepartementService} from "../services/departement.service";
+import {Departement} from "../model/departement.model";
+import {catchError, Observable, throwError} from "rxjs";
 
 
 
@@ -16,7 +19,7 @@ import {ApexChart, ApexNonAxisChartSeries} from "ng-apexcharts";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  public nbrProf  !: Number[]
   chartSeries : ApexNonAxisChartSeries = [40,32,28,55];
   chartDetails : ApexChart ={
     type:'pie',
@@ -26,11 +29,15 @@ export class DashboardComponent implements OnInit {
 
   };
 
+
   constructor(private etdService: EtudiantService,
               private moduleService: ModuleService,
               private profService: ProfsService,
+              private  depService : DepartementService,
 
               private  eventService : EventService) {
+
+
     Chart.register(...registerables);
   }
   title = 'angular-chart';
@@ -38,19 +45,17 @@ export class DashboardComponent implements OnInit {
   lengthModule: number = 0;
   lengthProf: number = 0;
   lengthActivity: number = 0;
-
-
-
+  counts: number[] = [];
+  nomdep : string[] = [];
+  nbretds : number[] = [];
 
 
   ngOnInit(): void {
+
    //nbr des prof pour chaque departement
 
-    this.profService.nbrProfPourChaqueDep().subscribe((data)=>{
-      let nbrProf = data;
 
 
-    })
     // Bar chart
     const barCanvasEle: any = document.getElementById('bar_chart')
     const barChart = new Chart(barCanvasEle.getContext('2d'), {
@@ -93,13 +98,44 @@ export class DashboardComponent implements OnInit {
 
     // Line Chart
     const lineCanvasEle: any = document.getElementById('line_chart')
+    // le nbr de prof dans chaque departement
+   this.profService.nbrProfPourChaqueDep()
+      .subscribe({
+        next: (result) => {
+          result.forEach(x => {
+
+
+            this.counts.push(x);
+          });
+        }})
+    //les noms des departements
+    this.profService.getDeps()
+      .subscribe({
+        next: (result) => {
+          result.forEach(x => {
+
+
+            this.nomdep.push(x);
+          });
+        }})
+    // le nbr des etudiants de chaque departement
+    this.etdService.nbrEtdPourChaqueDep()
+      .subscribe({
+        next: (result) => {
+          result.forEach(x => {
+
+
+            this.nbretds.push(x);
+          });
+        }})
+   // console.log(this.counts)
     const lineChar = new Chart(lineCanvasEle.getContext('2d'), {
       type: 'line',
       data: {
-        labels: ['January', 'February', 'March'],
+        labels: this.nomdep,
         datasets: [
-          { data: [1,2,3], label: 'Profs', borderColor: 'rgba(54, 162, 235)' },
-          { data: [4,3,1], label: 'Etudiants', borderColor: 'rgb(75, 192, 192)' },
+          { data: this.counts, label: 'Profs', borderColor: 'rgb(255,105,180)' },
+          { data: this.nbretds, label: 'Etudiants', borderColor: 'rgba(54, 162, 235)' },
         ],
       },
       options: {

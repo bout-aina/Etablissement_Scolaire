@@ -12,6 +12,8 @@ import java.util.List;
 public interface EtudiantService {
 
 
+    List<Integer> nbrEtdPourChaqueDep();
+
     EtudiantDTO saveEtd(EtudiantDTO etudiantDTO);
 
 

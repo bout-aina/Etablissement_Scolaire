@@ -52,6 +52,11 @@ public class EtudiantRestController {
         return etudiantService.getEtd(etdId);
 
     }
+    @GetMapping("/etdNbr")
+    public List<Integer> nbrEtdPourChaqueDep(){
+
+        return etudiantService.nbrEtdPourChaqueDep();
+    }
 
     @GetMapping("/etudiants")
     public List<EtudiantDTO> etudiants(){

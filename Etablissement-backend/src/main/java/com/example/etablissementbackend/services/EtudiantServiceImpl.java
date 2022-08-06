@@ -1,10 +1,8 @@
 package com.example.etablissementbackend.services;
 
 import com.example.etablissementbackend.dtos.EtudiantDTO;
-import com.example.etablissementbackend.dtos.ModuleDTO;
 import com.example.etablissementbackend.entities.*;
 import com.example.etablissementbackend.exceptions.EtudiantNotFoundException;
-import com.example.etablissementbackend.exceptions.ModuleNotFoundException;
 import com.example.etablissementbackend.mappers.EtudiantMapperImpl;
 import com.example.etablissementbackend.repositories.DepartementRepository;
 import com.example.etablissementbackend.repositories.EtudiantRepository;
@@ -36,6 +34,12 @@ public class EtudiantServiceImpl implements EtudiantService{
 
 
         return moduleDTOS;
+    }
+    @Override
+    public  List<Integer> nbrEtdPourChaqueDep()
+    {
+        List<Integer> nbr = etudiantRepository.nbrEtdPourChaqueDep();
+        return  nbr;
     }
 
     @Override

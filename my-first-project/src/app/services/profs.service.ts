@@ -18,14 +18,14 @@ export class ProfsService {
   public searchProfs(keyword : string):Observable<Array<Profs>>{
     return this.http.get<Array<Profs>>(environment.backendHost+"/profs/search?keyword="+keyword)
   }
-  public nbrProfPourChaqueDep():Observable<Array<Number>>{
-    return this.http.get<Array<Number>>(environment.backendHost+"/profsNbr")
+  public nbrProfPourChaqueDep():Observable<Array<number>>{
+    return this.http.get<Array<number>>(environment.backendHost+"/profsNbr")
   }
   public saveProf(profs: Profs):Observable<Profs>{
     return this.http.post<Profs>(environment.backendHost+"/profs",profs);
   }
-  public  getDeps():Observable<Array<deps>>{
-    return this.http.get<Array<deps>>(environment.backendHost+"/departementnames")
+  public  getDeps():Observable<Array<string>>{
+    return this.http.get<Array<string>>(environment.backendHost+"/departementnames")
   }
   public deleteProf(id: number){
     return this.http.delete(environment.backendHost+"/profs/"+id);
@@ -37,6 +37,7 @@ export class ProfsService {
   public getModuleOfProf(id: number){
     return this.http.get(environment.backendHost+"/profs/"+id+"/listModule");
   }
+
 
 
 }

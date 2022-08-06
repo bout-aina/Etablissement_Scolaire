@@ -12,6 +12,9 @@ import {Etudiant} from "../model/etudiant.model";
 export class EtudiantService {
 
   constructor(private http:HttpClient) { }
+  public nbrEtdPourChaqueDep():Observable<Array<number>>{
+    return this.http.get<Array<number>>(environment.backendHost+"/etdNbr")
+  }
   public  etudiantlist():Observable<Array<Etudiant>>{
     return this.http.get<Array<Etudiant>>(environment.backendHost+"/etudiants")
   }

@@ -57,6 +57,11 @@ public class EtudiantRestController {
 
         return etudiantService.nbrEtdPourChaqueDep();
     }
+    @GetMapping("/pourcentagedechaqueEtat")
+    public List<Integer> pourcentageDechaqueEat(){
+
+        return etudiantService.pourcentage();
+    }
 
     @GetMapping("/etudiants")
     public List<EtudiantDTO> etudiants(){

@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,24 @@ public class EtudiantServiceImpl implements EtudiantService{
     {
         List<Integer> nbr = etudiantRepository.nbrEtdPourChaqueDep();
         return  nbr;
+    }
+    @Override
+    public List<Integer> pourcentage()
+    {
+        List<Float> nbr = etudiantRepository.pourcentageDechaqueEat();
+
+        int taille= nbr.toArray().length;
+        int count = etudiantRepository.sizeList();
+        List<Integer> lespourcentages = new ArrayList<>();
+        for (int i = 0; i < 3 ; i++) {
+
+            Float d2= nbr.get(i)/count;
+            int nombre = (int) (d2*100);
+            System.out.print(""+d2);
+            lespourcentages.add(nombre);
+
+        }
+        return  lespourcentages;
     }
 
     @Override

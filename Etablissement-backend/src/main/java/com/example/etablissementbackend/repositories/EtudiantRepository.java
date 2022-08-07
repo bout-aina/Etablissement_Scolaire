@@ -14,4 +14,9 @@ public interface EtudiantRepository extends JpaRepository<Etudiant,Long> {
     public List<Etudiant> findAllByOrderByNomAsc();
     @Query("select count(p.id) from  Etudiant p group by p.departement")
     List<Integer> nbrEtdPourChaqueDep();
+    @Query("select count(p.id) from  Etudiant p group by p.etat")
+    List<Float> pourcentageDechaqueEat();
+    @Query("select count(id) from  Etudiant ")
+    int sizeList();
+
 }

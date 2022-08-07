@@ -20,11 +20,13 @@ import {catchError, Observable, throwError} from "rxjs";
 })
 export class DashboardComponent implements OnInit {
   public nbrProf  !: Number[]
-  chartSeries : ApexNonAxisChartSeries = [40,32,28,55];
+  myDate = new Date();
+  chartSeries !: ApexNonAxisChartSeries ;
   chartDetails : ApexChart ={
     type:'pie',
     toolbar : {
-      show : true
+      show : true,
+
     }
 
   };
@@ -48,10 +50,20 @@ export class DashboardComponent implements OnInit {
   counts: number[] = [];
   nomdep : string[] = [];
   nbretds : number[] = [];
-
+  pieChart : number [] = [];
 
   ngOnInit(): void {
+    this.etdService.pourcentage()
+      .subscribe({
+        next: (result) => {
+          result.forEach(x => {
 
+
+            this.pieChart.push(x);
+          });
+        }})
+    console.log(this.pieChart)
+    this.chartSeries = this.pieChart;
    //nbr des prof pour chaque departement
 
 

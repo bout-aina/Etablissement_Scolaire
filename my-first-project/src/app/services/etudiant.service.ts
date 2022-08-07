@@ -15,6 +15,9 @@ export class EtudiantService {
   public nbrEtdPourChaqueDep():Observable<Array<number>>{
     return this.http.get<Array<number>>(environment.backendHost+"/etdNbr")
   }
+  public pourcentage():Observable<Array<number>>{
+    return this.http.get<Array<number>>(environment.backendHost+"/pourcentagedechaqueEtat")
+  }
   public  etudiantlist():Observable<Array<Etudiant>>{
     return this.http.get<Array<Etudiant>>(environment.backendHost+"/etudiants")
   }

@@ -21,7 +21,11 @@ public class EventRestController {
         return eventService.eventlist();
 
     }
+    @GetMapping("/eventbymonth")
+    public List<Integer> eventbymonth(){
+        return eventService.eventbymonth();
 
+    }
     @DeleteMapping("/event/{id}")
     public void deleteEvent(@PathVariable Long id){
         eventService.deleteEvent(id);

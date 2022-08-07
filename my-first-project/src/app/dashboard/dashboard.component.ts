@@ -25,11 +25,14 @@ export class DashboardComponent implements OnInit {
   chartDetails : ApexChart ={
     type:'pie',
     toolbar : {
-      show : true,
+      show : false,
 
-    }
+    },
+
+
 
   };
+  chartLabels = ["Prepa","1 Cycle","2 Cycle"];
 
 
   constructor(private etdService: EtudiantService,
@@ -48,6 +51,7 @@ export class DashboardComponent implements OnInit {
   lengthProf: number = 0;
   lengthActivity: number = 0;
   counts: number[] = [];
+  events: number[] = [];
   nomdep : string[] = [];
   nbretds : number[] = [];
   pieChart : number [] = [];
@@ -64,19 +68,28 @@ export class DashboardComponent implements OnInit {
         }})
     console.log(this.pieChart)
     this.chartSeries = this.pieChart;
-   //nbr des prof pour chaque departement
+    //nbr des prof pour chaque departement
 
 
+//nbre des events
+    this.eventService.eventbymonth()
+      .subscribe({
+        next: (result) => {
+          result.forEach(x => {
 
+
+            this.events.push(x);
+          });
+        }})
     // Bar chart
     const barCanvasEle: any = document.getElementById('bar_chart')
     const barChart = new Chart(barCanvasEle.getContext('2d'), {
       type: 'bar',
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: ['Janvier', 'Fevrier', 'Mars', 'Avril ', 'Mai', 'Juin', 'Juillet', 'Août', 'Sept', 'Octob', 'Novem', 'Décem'],
         datasets: [{
-          label: 'Sales',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          label: 'Nombre des activités',
+          data: this.events,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(255, 159, 64, 0.2)',
@@ -84,7 +97,12 @@ export class DashboardComponent implements OnInit {
             'rgba(75, 192, 192, 0.2)',
             'rgba(54, 162, 235, 0.2)',
             'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)'
+            'rgba(201, 203, 207, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)'
           ],
           borderColor: [
             'rgb(255, 99, 132)',
@@ -93,7 +111,12 @@ export class DashboardComponent implements OnInit {
             'rgb(75, 192, 192)',
             'rgb(54, 162, 235)',
             'rgb(153, 102, 255)',
-            'rgb(201, 203, 207)'
+            'rgb(201, 203, 207)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)'
           ],
           borderWidth: 1
         }]
@@ -111,7 +134,7 @@ export class DashboardComponent implements OnInit {
     // Line Chart
     const lineCanvasEle: any = document.getElementById('line_chart')
     // le nbr de prof dans chaque departement
-   this.profService.nbrProfPourChaqueDep()
+    this.profService.nbrProfPourChaqueDep()
       .subscribe({
         next: (result) => {
           result.forEach(x => {
@@ -140,7 +163,7 @@ export class DashboardComponent implements OnInit {
             this.nbretds.push(x);
           });
         }})
-   // console.log(this.counts)
+    // console.log(this.counts)
     const lineChar = new Chart(lineCanvasEle.getContext('2d'), {
       type: 'line',
       data: {

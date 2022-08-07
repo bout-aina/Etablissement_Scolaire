@@ -28,4 +28,7 @@ export class EventService {
 
     return this.http.put<Event>(environment.backendHost+"/event/"+id,etd);
   }
+  public eventbymonth():Observable<Array<number>>{
+    return this.http.get<Array<number>>(environment.backendHost+"/eventbymonth")
+  }
 }

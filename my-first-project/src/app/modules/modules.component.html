@@ -30,7 +30,7 @@
     }
     .table-title {
       padding-bottom: 15px;
-      background: #299be4;
+      background: #566787;
       color: #fff;
       padding: 16px 30px;
       margin: -20px -25px 10px;
@@ -99,13 +99,16 @@
       text-decoration: none;
     }
     table.table td a:hover {
-      color: #2196F3;
+      color:#b8daff ;
     }
     table.table td a.edit {
-      color:  #10c469;
+      color:  #7bc74d;
     }
     table.table td a.delete {
       color: #F44336;
+    }
+    table.table td a.details {
+      color: #117a8b;
     }
     table.table td i {
       font-size: 19px;
@@ -171,6 +174,34 @@
       margin-top: 10px;
       font-size: 13px;
     }
+
+
+    .search_box{
+      border-radius: 40px;
+      background-color: white;
+    }
+    form{
+      margin: 0;
+    }
+    input{
+      border:none;
+      margin:10px 5px 10px 0px;
+      font-size: 12px;
+      outline: none;
+      color:#17202A;
+    }
+    .search_box button i{
+      font-size: 15px;
+      margin: 0px 5px;
+
+      color:#117a8b;
+    }
+
+    button{
+      background: transparent;
+      border:none;
+      outline: none;
+    }
   </style>
   <script>
     $(document).ready(function(){
@@ -181,7 +212,7 @@
 <body style="background-color: white">
 
 
-<ng-container *ngIf="modules | async as listModules; else failureOrLading">
+<ng-container *ngIf="snapshot  as listModules; else failureOrLading">
   <div class="container-xl offset-md-1" >
 
     <div class="table-responsive" >
@@ -193,16 +224,31 @@
               <h2>Gestion Des <b>Modules</b></h2>
             </div>
             <div class="col-sm-7" >
-              <a (click)="handleSavemodule()" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Ajouter Module</span></a>
+              <a (click)="handleSavemodule()" class="btn btn-secondary" style="background-color: #7bc74d;color: white"><i class="material-icons">&#xE147;</i> <span>Ajouter Module</span></a>
               <!--search-->
               <div *ngIf="searchformGroup">
-                <form [formGroup]="searchformGroup" (ngSubmit)="handleSearchModules()">
-                  <div class="input-group col-sm-7 ">
-                    <label class="input-group-text" style="background-color: white">Keyword:</label>
-                    <input type="text" formControlName="keyword" class="form-control">
-                    <button class="btn btn-info" style="background-color: #566787;color: white">Search</button>
-                  </div>
-                </form>
+                <div class="search_box col-sm-7">
+
+                  <form [formGroup]="searchformGroup" (ngSubmit)="handleSearchModules()" >
+
+                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+
+                    <input  type="text" formControlName="keyword" placeholder="Search...">
+
+                  </form>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
               </div>
             </div>
           </div>
@@ -220,7 +266,8 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let m of modules | async">
+          <tr *ngFor="let m of snapshot | paginate :{itemsPerPage: 4,currentPage:page ,totalItems : totalLenght};
+          let i = index;">
             <td>{{m.id}}</td>
             <td><a  (click)="handleDetailmodule(m)" title="Show Details"  onmouseover="this.style.cursor='pointer'" >{{m.nom}}</a></td>
             <td>{{m.coeff}}</td>
@@ -234,18 +281,11 @@
 
           </tbody>
         </table>
-        <div class="clearfix">
-          <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-          <ul class="pagination">
-            <li class="page-item disabled"><a href="#">Previous</a></li>
-            <li class="page-item"><a href="#" class="page-link">1</a></li>
-            <li class="page-item"><a href="#" class="page-link">2</a></li>
-            <li class="page-item active"><a href="#" class="page-link">3</a></li>
-            <li class="page-item"><a href="#" class="page-link">4</a></li>
-            <li class="page-item"><a href="#" class="page-link">5</a></li>
-            <li class="page-item"><a href="#" class="page-link">Next</a></li>
-          </ul>
-        </div>
+      <div class="clearfix">
+        <div class="hint-text">Showing <b>{{page}}</b> out of <b>{{totalLenght}}</b> entries</div>
+        <pagination-controls class="pagination" (pageChange)="page=$event"></pagination-controls>
+
+      </div>
       </div>
     </div>
   </div>

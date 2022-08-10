@@ -1,5 +1,6 @@
 package com.example.etablissementbackend.web;
 
+import com.example.etablissementbackend.dtos.EtudiantDTO;
 import com.example.etablissementbackend.dtos.ModuleDTO;
 import com.example.etablissementbackend.entities.Module;
 import com.example.etablissementbackend.exceptions.ModuleNotFoundException;
@@ -42,8 +43,8 @@ public class ModuleRestController {
         etablissementService.deleteModule(id);
     }
     @GetMapping("/modules/search")
-    public List<ModuleDTO> searchModules(@RequestParam(name ="keyword",defaultValue = "") String keyword){
-        return etablissementService.searchModules("%"+keyword+"%");
+    public List<ModuleDTO> searchModules2(@RequestParam(name ="keyword",defaultValue = "") String keyword){
+        return etablissementService.allmodules("%"+keyword+"%");
     }
     @PutMapping("/modules/{id}")
     public  ModuleDTO updateModule(@PathVariable Long id,@RequestBody ModuleDTO moduleDTO)  {

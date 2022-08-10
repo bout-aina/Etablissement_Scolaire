@@ -87,7 +87,31 @@ public class EtablissementServiceImpl implements EtablissementService {
 
         return moduleDTOS;
     }
+    @Override
+    public List<ModuleDTO> allmodules(String kw) {
+        if (kw == null)
+        {
+            List<Module> modules = moduleRepository.findAll();
+            List<ModuleDTO> moduleDTOS =
+                    modules.stream()
+                            .map(module -> dtoMapper.fromModule(module))
+                            .collect(Collectors.toList());
 
+
+            return moduleDTOS;
+        }
+        else{
+
+            List<Module> etds = moduleRepository.allmodules(kw);
+            List<ModuleDTO> etudiantDTOS =
+                    etds.stream()
+                            .map(module -> dtoMapper.fromModule(module))
+                            .collect(Collectors.toList());
+
+            return etudiantDTOS;
+        }
+
+    }
     @Override
     public ModuleDTO getModule(Long moduleId) throws ModuleNotFoundException {
         Module module = moduleRepository.findById(moduleId)

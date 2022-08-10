@@ -1,5 +1,6 @@
 package com.example.etablissementbackend.repositories;
 
+import com.example.etablissementbackend.entities.Departement;
 import com.example.etablissementbackend.entities.Module;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,5 +17,7 @@ public interface ModuleRepository extends JpaRepository<Module,Long> {
 
     List<Module> searchModule(@Param("kw") String keyword);
 
+    @Query("select m from Module m where m.nom like :kw")
 
+    List<Module> allmodules(@Param("kw") String keyword);
 }

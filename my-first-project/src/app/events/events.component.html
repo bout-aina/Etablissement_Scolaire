@@ -30,7 +30,7 @@
     }
     .table-title {
       padding-bottom: 15px;
-      background: #299be4;
+      background: #566787;
       color: #fff;
       padding: 16px 30px;
       margin: -20px -25px 10px;
@@ -99,16 +99,16 @@
       text-decoration: none;
     }
     table.table td a:hover {
-      color: #2196F3;
+      color:#b8daff ;
     }
     table.table td a.edit {
-      color:  #10c469;
+      color:  #7bc74d;
     }
     table.table td a.delete {
       color: #F44336;
     }
     table.table td a.details {
-      color: #299be4;
+      color: #117a8b;
     }
     table.table td i {
       font-size: 19px;
@@ -174,6 +174,34 @@
       margin-top: 10px;
       font-size: 13px;
     }
+
+
+    .search_box{
+      border-radius: 40px;
+      background-color: white;
+    }
+    form{
+      margin: 0;
+    }
+    input{
+      border:none;
+      margin:10px 5px 10px 0px;
+      font-size: 12px;
+      outline: none;
+      color:#17202A;
+    }
+    .search_box button i{
+      font-size: 15px;
+      margin: 0px 5px;
+
+      color:#117a8b;
+    }
+
+    button{
+      background: transparent;
+      border:none;
+      outline: none;
+    }
   </style>
   <script>
     $(document).ready(function(){
@@ -196,9 +224,31 @@
               <h2>Gestion Des <b>Evénements</b></h2>
             </div>
             <div class="col-sm-7" >
-              <a (click)="handleSaveetudiant()"  class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Ajouter Event</span></a>
+              <a (click)="handleSaveetudiant()"  class="btn btn-secondary" style="background-color: #7bc74d;color: white"><i class="material-icons">&#xE147;</i> <span>Ajouter Event</span></a>
               <!--search-->
+              <div *ngIf="searchformGroup">
+                <div class="search_box col-sm-7">
 
+                  <form [formGroup]="searchformGroup" (ngSubmit)="handleSearchEvent()" >
+
+                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+
+                    <input  type="text" formControlName="keyword" placeholder="Search...">
+
+                  </form>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+              </div>
             </div>
           </div>
         </div>
@@ -230,6 +280,7 @@
             <td>
               <a onmouseover="this.style.cursor='pointer'" (click)="handleEditEvent(m,m.id)" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">mode_edit</i></a>
               <a onmouseover="this.style.cursor='pointer'" (click)="handleDeleteEvent(m.id,i)" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+            </td>
 
 
 

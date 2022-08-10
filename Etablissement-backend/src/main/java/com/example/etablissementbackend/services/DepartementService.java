@@ -23,6 +23,9 @@ public interface DepartementService {
     void deleteDepartement(Long departementId);
 
     List<DepartementDTO> searchDepartements(String keyword);
+
+    List<DepartementDTO> alldeps(String kw);
+
     public List<String> getEtdOfDep(Long id);
     public List<String> getProfOfDep(Long id);
 

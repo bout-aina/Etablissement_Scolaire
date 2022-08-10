@@ -68,6 +68,10 @@ public class EtudiantRestController {
         return etudiantService.etudiantlist();
 
     }
+    @GetMapping("/etudiants/search")
+    public List<EtudiantDTO> searchModules(@RequestParam(name ="keyword",defaultValue = "") String keyword){
+        return etudiantService.alletd("%"+keyword+"%");
+    }
 
 
 }

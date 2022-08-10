@@ -20,6 +20,10 @@ export class EventService {
 
     return this.http.post<Event>(environment.backendHost+"/event",event);
 
+
+  }
+  public searchEvent(keyword : string):Observable<Array<Event>>{
+    return this.http.get<Array<Event>>(environment.backendHost+"/event/search?keyword="+keyword)
   }
   public deleteEvent(id: number){
     return this.http.delete(environment.backendHost+"/event/"+id);

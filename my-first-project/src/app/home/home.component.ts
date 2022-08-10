@@ -30,11 +30,7 @@ export class HomeComponent implements OnInit {
               private router : Router) { }
 
   ngOnInit(): void {
-    this.departementService.depslist().subscribe((data)=>{
-      this.snapshot = data;
-      this.totalLenght = data.length;
-      console.log(this.snapshot)
-    })
+    this.handleSearchDep();
 
 
   }
@@ -42,7 +38,16 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl("admin/newDep",);
   }
 
+  handleSearchDep() {
+    let kw=this.searchformGroup?.value.keyword;
+    this.departementService.searchDeps(kw).subscribe((data)=>{
+        this.snapshot = data;
+        this.totalLenght = data.length;
+        console.log(this.snapshot)
+      }
 
+    );
+  }
   handleDeleteModule(id : number , index : number ) {
     let conf = confirm("Are you sure?");
     if(!conf) return;
@@ -62,7 +67,10 @@ export class HomeComponent implements OnInit {
         console.log(err);
       }
     })
-
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
   handleEditEtudiant(module: Departement) {
     this.router.navigateByUrl("admin/updateDep/"+module.id,{state :module});

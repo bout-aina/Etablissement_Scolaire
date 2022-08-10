@@ -101,7 +101,31 @@ public class ProfsServiceImpl implements ProfsService{
         List<Integer> nbr = profsRepository.nbrProfPourChaqueDep();
         return  nbr;
     }
+    @Override
+    public List<ProfsDTO> allprof(String kw) {
+        if (kw == null)
+        {
+            List<Profs> modules = profsRepository.findAll();
+            List<ProfsDTO> moduleDTOS =
+                    modules.stream()
+                            .map(module -> dtoMapper.fromProfs(module))
+                            .collect(Collectors.toList());
 
+
+            return moduleDTOS;
+        }
+        else{
+
+            List<Profs> etds = profsRepository.allprofs(kw);
+            List<ProfsDTO> etudiantDTOS =
+                    etds.stream()
+                            .map(module -> dtoMapper.fromProfs(module))
+                            .collect(Collectors.toList());
+
+            return etudiantDTOS;
+        }
+
+    }
     @Override
     public List<String> AllDepartement() {
         List<Departement> dep= departementRepository.findAll();

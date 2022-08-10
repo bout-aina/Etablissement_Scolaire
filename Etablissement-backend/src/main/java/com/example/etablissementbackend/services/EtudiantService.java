@@ -8,6 +8,8 @@ import java.util.List;
 public interface EtudiantService {
 
 
+    List<EtudiantDTO> alletd(String kw);
+
     List<Integer> nbrEtdPourChaqueDep();
 
 

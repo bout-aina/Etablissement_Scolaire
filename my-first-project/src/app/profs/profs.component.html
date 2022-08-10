@@ -15,6 +15,7 @@
   </script>
 </head>
 <body style="background-color: white">
+<ng-container *ngIf="snapshot  as listModules; else failureOrLading">
 <div class="container-xl offset-md-1">
 
   <div class="table-responsive">
@@ -25,7 +26,7 @@
             <h2>Gestion des <b>Professeurs</b></h2>
           </div>
           <div class="col-sm-7">
-            <a routerLink="/admin/add-prof" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Ajout Prof</span></a>
+            <a routerLink="/admin/add-prof" class="btn btn-secondary" style="background-color: #7bc74d;color: white"><i class="material-icons" >&#xE147;</i> <span>Ajout Prof</span></a>
 
             <div *ngIf="searchProfs">
               <div class="search_box col-sm-7">
@@ -56,7 +57,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let p of profs | async">
+        <tr *ngFor="let p of snapshot | paginate :{itemsPerPage: 4,currentPage:page ,totalItems : totalLenght};
+          let i = index;">
           <td>{{p.id}}</td>
           <td><a   onmouseover="this.style.cursor='pointer'" (click)="handleDetailsProf(p)">{{p.nom_complet}}</a></td>
           <td>{{p.mail}}</td>
@@ -71,18 +73,29 @@
         </tbody>
       </table>
       <div class="clearfix">
-        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-        <ul class="pagination">
-          <li class="page-item disabled"><a href="#">Previous</a></li>
-          <li class="page-item"><a href="#" class="page-link">1</a></li>
-          <li class="page-item"><a href="#" class="page-link">2</a></li>
-          <li class="page-item active"><a href="#" class="page-link">3</a></li>
-          <li class="page-item"><a href="#" class="page-link">4</a></li>
-          <li class="page-item"><a href="#" class="page-link">5</a></li>
-          <li class="page-item"><a href="#" class="page-link">Next</a></li>
-        </ul>
+        <div class="hint-text">Showing <b>{{page}}</b> out of <b>{{totalLenght}}</b> entries</div>
+        <pagination-controls class="pagination" (pageChange)="page=$event"></pagination-controls>
+
       </div>
     </div>
   </div>
-</div>     </body>
+</div>
+</ng-container>
+<ng-template #failureOrLading >
+  <ng-container *ngIf="errorMessage; else loading">
+    <div class="text-danger offset-md-3">
+      {{errorMessage}}
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    Loading.....
+
+  </ng-template>
+</ng-template>
+
+
+
+
+</body>
 </html>
+

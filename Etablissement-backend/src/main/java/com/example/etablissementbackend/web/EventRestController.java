@@ -1,5 +1,6 @@
 package com.example.etablissementbackend.web;
 
+import com.example.etablissementbackend.dtos.EtudiantDTO;
 import com.example.etablissementbackend.entities.Event;
 import com.example.etablissementbackend.services.EventServiceImp;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,10 @@ public class EventRestController {
     public List<Integer> eventbymonth(){
         return eventService.eventbymonth();
 
+    }
+    @GetMapping("/event/search")
+    public List<Event> searchEvent(@RequestParam(name ="keyword",defaultValue = "") String keyword){
+        return eventService.allevent("%"+keyword+"%");
     }
     @DeleteMapping("/event/{id}")
     public void deleteEvent(@PathVariable Long id){

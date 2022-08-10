@@ -25,12 +25,7 @@ export class EventsComponent implements OnInit {
               private router : Router) { }
 
   ngOnInit(): void {
-    this.eventService.eventlist().subscribe((data)=>{
-      this.snapshot = data;
-      this.totalLenght = data.length;
-      console.log(this.snapshot)
-    })
-
+    this.handleSearchEvent();
 
   }
   handleSaveetudiant() {
@@ -57,7 +52,20 @@ export class EventsComponent implements OnInit {
         console.log(err);
       }
     })
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
+  }
+  handleSearchEvent() {
+    let kw=this.searchformGroup?.value.keyword;
+    this.eventService.searchEvent(kw).subscribe((data)=>{
+        this.snapshot = data;
+        this.totalLenght = data.length;
+        console.log(this.snapshot)
+      }
 
+    );
   }
   handleEditEvent(event: Event,id:number) {
     this.router.navigateByUrl("admin/updateEvent/"+id,{state :event});

@@ -8,7 +8,7 @@ public interface EventService {
     Event saveEvent(Event event);
 
 
-
+    List<Event> allevent(String kw);
 
     Event updateEtd(Long idevent, Event event);
 

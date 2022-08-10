@@ -12,4 +12,8 @@ public interface EventRepository extends JpaRepository<Event,Long> {
     @Query("select count(m.id) from Event m where year(m.date) = :year  group by month(m.date) order by month(m.date)")
 
     List<Integer> eventbymonth(@Param("year") Integer year);
+
+    @Query("select m from Event m where m.nom   like :kw")
+
+    List<Event> allevents(@Param("kw") String keyword);
 }

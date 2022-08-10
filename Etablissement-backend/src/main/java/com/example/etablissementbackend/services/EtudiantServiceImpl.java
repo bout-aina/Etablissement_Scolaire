@@ -37,6 +37,31 @@ public class EtudiantServiceImpl implements EtudiantService{
         return moduleDTOS;
     }
     @Override
+    public List<EtudiantDTO> alletd(String kw) {
+        if (kw == null)
+        {
+            List<Etudiant> modules = etudiantRepository.findAllByOrderByNomAsc();
+            List<EtudiantDTO> moduleDTOS =
+                    modules.stream()
+                            .map(module -> dtoMapper.fromEtudiant(module))
+                            .collect(Collectors.toList());
+
+
+            return moduleDTOS;
+        }
+        else{
+
+            List<Etudiant> etds = etudiantRepository.alletd(kw);
+            List<EtudiantDTO> etudiantDTOS =
+                    etds.stream()
+                            .map(module -> dtoMapper.fromEtudiant(module))
+                            .collect(Collectors.toList());
+
+            return etudiantDTOS;
+        }
+
+    }
+    @Override
     public  List<Integer> nbrEtdPourChaqueDep()
     {
         List<Integer> nbr = etudiantRepository.nbrEtdPourChaqueDep();
@@ -50,7 +75,7 @@ public class EtudiantServiceImpl implements EtudiantService{
         int taille= nbr.toArray().length;
         int count = etudiantRepository.sizeList();
         List<Integer> lespourcentages = new ArrayList<>();
-        for (int i = 0; i < 3 ; i++) {
+        for (int i = 0; i < taille ; i++) {
 
             Float d2= nbr.get(i)/count;
             int nombre = (int) (d2*100);

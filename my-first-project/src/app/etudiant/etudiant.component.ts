@@ -30,14 +30,10 @@ export class EtudiantComponent implements OnInit {
               private router : Router) { }
 
   ngOnInit(): void {
-    this.etudiantService.etudiantlist().subscribe((data)=>{
-      this.snapshot = data;
-      this.totalLenght = data.length;
-      console.log(this.snapshot)
-    })
-
+    this.handleSearchModules();
 
   }
+
   handleSaveetudiant() {
     this.router.navigateByUrl("admin/newEtudiant",);
   }
@@ -47,6 +43,10 @@ export class EtudiantComponent implements OnInit {
     this.etudiantService.deleteEtd(id).subscribe(response =>{
       this.snapshot.splice(index, 1);
     });
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
   handleEditEtudiant(module: Etudiant) {
     this.router.navigateByUrl("admin/updateEtudiant/"+module.id,{state :module});
@@ -59,5 +59,16 @@ export class EtudiantComponent implements OnInit {
 
   handlepdf(m: Etudiant) {
     this.router.navigateByUrl("admin/printetd/"+m.id,{state :m});
+  }
+
+  handleSearchModules() {
+    let kw=this.searchformGroup?.value.keyword;
+    this.etudiantService.searchModules(kw).subscribe((data)=>{
+        this.snapshot = data;
+        this.totalLenght = data.length;
+        console.log(this.snapshot)
+      }
+
+    );
   }
 }

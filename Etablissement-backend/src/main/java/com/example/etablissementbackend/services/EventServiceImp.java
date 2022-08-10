@@ -21,6 +21,23 @@ public class EventServiceImp implements EventService{
     public Event saveEvent(Event event) {
         Event savedEvent=eventRepository.save(event);
         return savedEvent;    }
+    @Override
+    public List<Event> allevent(String kw) {
+        if (kw == null)
+        {
+            List<Event> modules = eventRepository.findAllByOrderByDateDesc();
+
+
+            return modules;
+        }
+        else{
+
+            List<Event> etds = eventRepository.allevents(kw);
+
+            return etds;
+        }
+
+    }
 
     @Override
     public Event updateEtd(Long idevent, Event event) {

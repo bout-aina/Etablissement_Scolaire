@@ -16,6 +16,8 @@ import {Router} from "@angular/router";
 export class ModulesComponent implements OnInit {
   modules!:Observable<Array<Module>>;
   errorMessage!: string;
+  totalLenght : any;
+
   searchformGroup: FormGroup = this.fb.group({
     keyword : this.fb.control("")
   });
@@ -28,25 +30,20 @@ export class ModulesComponent implements OnInit {
   page :number =1;
   snapshot:any =[];
   ngOnInit(): void {
-    this.searchformGroup=this.fb.group({
-      keyword : this.fb.control("")
-    });
+
     this.handleSearchModules();
-    this.moduleService.getModules().subscribe((data:any)=>{
-      this.totalLength = data.length;
-      console.log(data.length)
-    })
+
   }
 
 
 
   handleSearchModules() {
     let kw=this.searchformGroup?.value.keyword;
-    this.modules=this.moduleService.searchModules(kw).pipe(
-      catchError(err => {
-        this.errorMessage=err.message;
-        return throwError(err);
-      })
+    this.moduleService.searchModules(kw).subscribe((data)=>{
+        this.snapshot = data;
+        this.totalLenght = data.length;
+        console.log(this.snapshot)
+      }
 
     );
   }
@@ -69,6 +66,10 @@ export class ModulesComponent implements OnInit {
         console.log(err);
       }
     })
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
   handleDetailmodule(module: Module) {
     this.router.navigateByUrl("admin/details-module/"+module.id,{state :module});

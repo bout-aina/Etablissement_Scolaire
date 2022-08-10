@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface EtablissementService {
 
+    List<ModuleDTO> allmodules(String kw);
+
     ModuleDTO getModule(Long moduleId) throws ModuleNotFoundException;
 
     ModuleDTO saveModule(ModuleDTO moduleDTO) ;

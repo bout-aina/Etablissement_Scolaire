@@ -14,7 +14,9 @@ export class DepartementService {
   public  depslist():Observable<Array<Departement>>{
     return this.http.get<Array<Departement>>(environment.backendHost+"/departements")
   }
-
+  public searchDeps(keyword : string):Observable<Array<Departement>>{
+    return this.http.get<Array<Departement>>(environment.backendHost+"/departements/search?keyword="+keyword)
+  }
   public saveEtd(etd : Departement):Observable<Departement>{
 
     return this.http.post<Departement>(environment.backendHost+"/departements",etd);
@@ -23,6 +25,7 @@ export class DepartementService {
   public deleteEtd(id: number){
     return this.http.delete(environment.backendHost+"/departement/"+id);
   }
+
   public updateDep(id: number,etd : Departement):Observable<Departement>{
 
     return this.http.put<Departement>(environment.backendHost+"/departements/"+id,etd);

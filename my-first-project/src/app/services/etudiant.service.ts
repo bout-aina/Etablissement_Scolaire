@@ -21,6 +21,9 @@ export class EtudiantService {
   public  etudiantlist():Observable<Array<Etudiant>>{
     return this.http.get<Array<Etudiant>>(environment.backendHost+"/etudiants")
   }
+  public searchModules(keyword : string):Observable<Array<Etudiant>>{
+    return this.http.get<Array<Etudiant>>(environment.backendHost+"/etudiants/search?keyword="+keyword)
+  }
 
   public saveEtd(etd : Etudiant):Observable<Etudiant>{
 

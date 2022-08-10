@@ -1,13 +1,10 @@
 package com.example.etablissementbackend.services;
 
 import com.example.etablissementbackend.dtos.DepartementDTO;
-import com.example.etablissementbackend.dtos.ModuleByProfDTO;
 import com.example.etablissementbackend.dtos.ProfByDepartementDTO;
 import com.example.etablissementbackend.entities.Departement;
 import com.example.etablissementbackend.entities.Etudiant;
-import com.example.etablissementbackend.entities.Module;
 import com.example.etablissementbackend.entities.Profs;
-import com.example.etablissementbackend.exceptions.DepartementNotFoundExeception;
 import com.example.etablissementbackend.mappers.DeparMapperImpl;
 import com.example.etablissementbackend.repositories.DepartementRepository;
 import lombok.AllArgsConstructor;
@@ -91,7 +88,31 @@ public class DepartementServiceImpl implements DepartementService {
         List<DepartementDTO> customerDTOS = customers.stream().map(cust -> dtoMapper.fromDepartement(cust)).collect(Collectors.toList());
         return customerDTOS;
     }
+    @Override
+    public List<DepartementDTO> alldeps(String kw) {
+        if (kw == null)
+        {
+            List<Departement> modules = departementRepository.findAllByOrderByNomdep();
+            List<DepartementDTO> moduleDTOS =
+                    modules.stream()
+                            .map(module -> dtoMapper.fromDepartement(module))
+                            .collect(Collectors.toList());
 
+
+            return moduleDTOS;
+        }
+        else{
+
+            List<Departement> etds = departementRepository.alldeps(kw);
+            List<DepartementDTO> etudiantDTOS =
+                    etds.stream()
+                            .map(module -> dtoMapper.fromDepartement(module))
+                            .collect(Collectors.toList());
+
+            return etudiantDTOS;
+        }
+
+    }
 
     @Override
     public List<String> getEtdOfDep(Long id) {

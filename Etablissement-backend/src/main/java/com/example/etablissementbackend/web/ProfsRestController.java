@@ -1,6 +1,7 @@
 package com.example.etablissementbackend.web;
 
 
+import com.example.etablissementbackend.dtos.EtudiantDTO;
 import com.example.etablissementbackend.dtos.ProfsDTO;
 import com.example.etablissementbackend.entities.Departement;
 
@@ -29,8 +30,8 @@ public class ProfsRestController {
     }
 
     @GetMapping("/profs/search")
-    public List<ProfsDTO> searchProfs(@RequestParam(name = "keyword",defaultValue = "") String keyword){
-        return profsService.searchProf("%"+keyword+"%");
+    public List<ProfsDTO> searchProfs(@RequestParam(name ="keyword",defaultValue = "") String keyword){
+        return profsService.allprof("%"+keyword+"%");
     }
     @GetMapping("/profsNbr")
     public List<Integer> nbrProfPourChaqueDep(){

@@ -8,6 +8,7 @@ import {ApexChart, ApexNonAxisChartSeries} from "ng-apexcharts";
 import {DepartementService} from "../services/departement.service";
 import {Departement} from "../model/departement.model";
 import {catchError, Observable, throwError} from "rxjs";
+import {Router} from "@angular/router";
 
 
 
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit {
 
 
   };
-  chartLabels = ["Prepa","1 Cycle","2 Cycle"];
+  chartLabels = ["1 Cycle","2 Cycle","Prepa"];
 
 
   constructor(private etdService: EtudiantService,
@@ -40,7 +41,8 @@ export class DashboardComponent implements OnInit {
               private profService: ProfsService,
               private  depService : DepartementService,
 
-              private  eventService : EventService) {
+              private  eventService : EventService,
+              ) {
 
 
     Chart.register(...registerables);

@@ -43,9 +43,9 @@ export class UpdateDepComponent implements OnInit {
     let prof:Departement=this.newProfFormGroup2.value;
     this.departementService.updateDep(this.profId,prof).subscribe({
       next : data=>{
-        alert("Departement has been successfully updated!");
-        //this.newModuleFormGroup.reset();
-        this.router.navigateByUrl("admin/home");
+        alert("Département has been successfully updated!");
+        this.newProfFormGroup2.reset();
+        //this.router.navigateByUrl("admin/home");
       },
       error : err => {
         console.log(err);

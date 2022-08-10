@@ -1,6 +1,7 @@
 package com.example.etablissementbackend.web;
 
 import com.example.etablissementbackend.dtos.DepartementDTO;
+import com.example.etablissementbackend.dtos.EtudiantDTO;
 import com.example.etablissementbackend.dtos.ProfByDepartementDTO;
 import com.example.etablissementbackend.entities.Departement;
 import com.example.etablissementbackend.exceptions.DepartementNotFoundExeception;
@@ -25,8 +26,8 @@ public class DepartementResController {
 
     }
     @GetMapping("/departements/search")
-    public List<DepartementDTO> searchCustomers(@RequestParam(name ="keyword",defaultValue = "") String keyword){
-        return departementService.searchDepartements("%"+keyword+"%");
+    public List<DepartementDTO> searchDep(@RequestParam(name ="keyword",defaultValue = "") String keyword){
+        return departementService.alldeps("%"+keyword+"%");
     }
     @GetMapping("/departements/{departementId}/listProfs")
     public ProfByDepartementDTO getDepartement(@PathVariable

@@ -15,24 +15,29 @@ export class ProfsComponent implements OnInit {
   profs! :Observable<Array<Profs>>;
   errorMessage! : string;
   searchProfs! : FormGroup;
+  totalLenght : any;
+  page : number =1;
+  snapshot:any =[];
   constructor(private profsService : ProfsService,private fb: FormBuilder, private router:Router) { }
 
   ngOnInit(): void {
     this.searchProfs=this.fb.group({
       keyword : this.fb.control("")
     });
+    this.handleSearchProfs()
     this.profs=this.profsService.getProfs();
   }
 
   handleSearchProfs() {
     let kw=this.searchProfs?.value.keyword;
-    this.profs=this.profsService.searchProfs(kw).pipe(
-      catchError(err => {
-        this.errorMessage=err.message;
-        return throwError(err);
-      })
+    this.profsService.searchProfs(kw).subscribe((data)=>{
+      this.snapshot = data;
+      this.totalLenght = data.length;
+      console.log(this.snapshot)
+    }
     );
   }
+
 
 
   handleDeleteProf(p: Profs) {
@@ -52,6 +57,10 @@ export class ProfsComponent implements OnInit {
         console.log(err);
       }
     })
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
   }
 
   handleEditProf(p: Profs) {

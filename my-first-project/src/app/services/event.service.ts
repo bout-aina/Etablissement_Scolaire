@@ -22,6 +22,9 @@ export class EventService {
 
 
   }
+  public months():Observable<Array<number>>{
+    return this.http.get<Array<number>>(environment.backendHost+"/months")
+  }
   public searchEvent(keyword : string):Observable<Array<Event>>{
     return this.http.get<Array<Event>>(environment.backendHost+"/event/search?keyword="+keyword)
   }

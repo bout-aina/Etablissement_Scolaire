@@ -27,6 +27,12 @@ public class EventRestController {
         return eventService.eventbymonth();
 
     }
+    @GetMapping("/months")
+    public List<Integer> months(){
+        return eventService.months();
+
+    }
+
     @GetMapping("/event/search")
     public List<Event> searchEvent(@RequestParam(name ="keyword",defaultValue = "") String keyword){
         return eventService.allevent("%"+keyword+"%");

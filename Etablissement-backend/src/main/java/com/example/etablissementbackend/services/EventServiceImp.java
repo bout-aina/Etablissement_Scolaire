@@ -22,6 +22,11 @@ public class EventServiceImp implements EventService{
         Event savedEvent=eventRepository.save(event);
         return savedEvent;    }
     @Override
+    public List<Integer> months() {
+        Integer year = Calendar.getInstance().get(Calendar.YEAR);
+        return eventRepository.months(year);
+    }
+    @Override
     public List<Event> allevent(String kw) {
         if (kw == null)
         {

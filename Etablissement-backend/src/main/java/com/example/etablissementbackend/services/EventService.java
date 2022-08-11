@@ -12,7 +12,7 @@ public interface EventService {
 
     Event updateEtd(Long idevent, Event event);
 
-
+    List<Integer> months();
     void deleteEvent(Long idevent);
 
 

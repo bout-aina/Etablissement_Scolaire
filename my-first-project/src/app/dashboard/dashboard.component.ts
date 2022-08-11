@@ -54,6 +54,7 @@ export class DashboardComponent implements OnInit {
   lengthActivity: number = 0;
   counts: number[] = [];
   events: number[] = [];
+  months: number[] = [];
   nomdep : string[] = [];
   nbretds : number[] = [];
   pieChart : number [] = [];
@@ -83,12 +84,22 @@ export class DashboardComponent implements OnInit {
             this.events.push(x);
           });
         }})
+    //months
+    this.eventService.months()
+      .subscribe({
+        next: (result) => {
+          result.forEach(x => {
+
+
+            this.months.push(x);
+          });
+        }})
     // Bar chart
     const barCanvasEle: any = document.getElementById('bar_chart')
     const barChart = new Chart(barCanvasEle.getContext('2d'), {
       type: 'bar',
       data: {
-        labels: ['Janvier', 'Fevrier', 'Mars', 'Avril ', 'Mai', 'Juin', 'Juillet', 'Août', 'Sept', 'Octob', 'Novem', 'Décem'],
+        labels:this.months,
         datasets: [{
           label: 'Nombre des activités',
           data: this.events,

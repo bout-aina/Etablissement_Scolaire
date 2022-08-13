@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
               private authService : AuthenticationService,
               private  router : Router) {
     this.myScriptElement = document.createElement("script");
-    this.myScriptElement.src = "assets/main1.js";
+    this.myScriptElement.src = "assets/disable.js";
     document.body.appendChild(this.myScriptElement);
   }
 
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
      next :(appUser)=>{
        this.authService.authenticateUser(appUser).subscribe({
          next : (data )=>{
-            this.router.navigateByUrl("/admin");
+            this.router.navigateByUrl("/admin/home");
          }
        });
      },

@@ -16,17 +16,23 @@ export class PdfDetailsEtdComponent implements OnInit {
   pdfTable!: ElementRef;
   moduleId!: string;
   etd! : Etudiant ;
+  myScriptElement: HTMLScriptElement;
   constructor(private route : ActivatedRoute, private router :Router) {
     this.etd=this.router.getCurrentNavigation()?.extras.state as Etudiant;
+    this.myScriptElement = document.createElement("script");
+    this.myScriptElement.src = "assets/disable.js";
+    document.body.appendChild(this.myScriptElement);
 
   }
+
 
   ngOnInit(): void {
     this.moduleId = this.route.snapshot.params['id'];
-
+    //this.loadScript();
   }
 
   printthis() {
+
     var elements = document.getElementById('page')
 
     // @ts-ignore
